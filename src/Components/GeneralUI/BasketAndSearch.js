@@ -64,6 +64,7 @@ const SearchWrapper = styled.div`
   padding: 16px;
   background: #f3f3f3;
   border-radius: 15px;
+  -webkit-tap-highlight-color: transparent;
   margin-right: 20px;
   cursor: pointer;
 
@@ -84,6 +85,7 @@ const BasketWrapper = styled.div`
   padding: 16px;
   background: #666666;
   border-radius: 15px;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   position: relative;
 

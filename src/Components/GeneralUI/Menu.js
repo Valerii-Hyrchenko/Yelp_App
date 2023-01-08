@@ -46,6 +46,7 @@ const Item = styled.li`
   background-color: ${(props) => (props.active ? "#FF5454" : "#eaf1fe")};
   border-radius: 15px;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   animation-name: ${(props) => (props.active ? "showMenuBar" : "")};
   animation-duration: 500ms;
   transition-timing-function: linear;

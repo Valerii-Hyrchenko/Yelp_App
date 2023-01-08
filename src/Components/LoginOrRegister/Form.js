@@ -31,16 +31,17 @@ export const Form = ({ pageType }) => {
 
   const dispatch = useDispatch();
   const { goTo } = useNav();
-  const { handleSubmit, handleChange, values, touched, errors, handleBlur } =
-    useFormik({
-      initialValues: currentInitialValues,
-      validationSchema: currentSchemeValid,
-      onSubmit: (values, { resetForm }) => {
-        dispatch(getCurrentDispatch());
-        resetForm(values);
-        goTo("/login");
-      },
-    });
+  const { handleSubmit, handleChange, values, errors, handleBlur } = useFormik({
+    initialValues: currentInitialValues,
+    validationSchema: currentSchemeValid,
+    validateOnChange: false,
+    validateOnBlur: false,
+    onSubmit: (values, { resetForm }) => {
+      dispatch(getCurrentDispatch());
+      resetForm(values);
+      goTo("/login");
+    },
+  });
 
   return (
     <FormWrapper>
@@ -49,7 +50,7 @@ export const Form = ({ pageType }) => {
           <InputWrapper key={id}>
             <Label htmlFor={id}>
               {label}
-              {touched[name] && errors[name] ? (
+              {errors[name] ? (
                 <ErrorMessage>Error: {errors[name]}</ErrorMessage>
               ) : null}
             </Label>

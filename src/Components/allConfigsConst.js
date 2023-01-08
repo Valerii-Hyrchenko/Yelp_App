@@ -25,23 +25,23 @@ import menu from "../assets/icons/menu/menu.svg";
 import settings from "../assets/icons/menu/settings.svg";
 import trending from "../assets/icons/menu/trending.svg";
 
-import allDishes from "../assets/img/menu_dishes/all_dishes.svg";
-import burger from "../assets/img/menu_dishes/burger.svg";
-import pizza from "../assets/img/menu_dishes/pizza.svg";
-import salads from "../assets/img/menu_dishes/salad.svg";
-import donut from "../assets/img/menu_dishes/donut.svg";
-import drinks from "../assets/img/menu_dishes/drinks.svg";
+import allDishes from "../assets/img/menu_dishes/all_dishes.png";
+import burger from "../assets/img/menu_dishes/burger.png";
+import pizza from "../assets/img/menu_dishes/pizza.png";
+import salads from "../assets/img/menu_dishes/salad.png";
+import donut from "../assets/img/menu_dishes/donut.png";
+import drinks from "../assets/img/menu_dishes/drinks.png";
 
-import chickenIcon from "../assets/icons/mini_icons/mini_chicken.svg";
-import coronaIcon from "../assets/icons/mini_icons/emoji_corona.svg";
-import cookieIcon from "../assets/icons/mini_icons/mini_cookie.svg";
-import pizzaIcon from "../assets/icons/mini_icons/mini_pizza.svg";
+import chickenIcon from "../assets/icons/mini_icons/mini_chicken.png";
+import coronaIcon from "../assets/icons/mini_icons/emoji_corona.png";
+import cookieIcon from "../assets/icons/mini_icons/mini_cookie.png";
+import pizzaIcon from "../assets/icons/mini_icons/mini_pizza.png";
 
-import miniAva1 from "../assets/icons/mini_icons/mini_ava_1.svg";
-import miniAva2 from "../assets/icons/mini_icons/mini_ava_2.svg";
-import miniAva3 from "../assets/icons/mini_icons/mini_ava_alka.svg";
+import miniAva1 from "../assets/icons/mini_icons/mini_ava_1.png";
+import miniAva2 from "../assets/icons/mini_icons/mini_ava_2.png";
+import miniAva3 from "../assets/icons/mini_icons/mini_ava_alka.png";
 
-import miniLike from "../assets/icons/mini_icons/mini_like.svg";
+import miniLike from "../assets/icons/mini_icons/mini_like.png";
 
 export const menuConfig = [
   { id: Math.floor(Math.random() * 100000), img: home, title: "Home" },

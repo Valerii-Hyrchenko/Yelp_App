@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { memo } from "react";
 
-import man from "../../assets/img/delivery/delivery-man.svg";
+import man from "../../assets/img/delivery/delivery-man.png";
 import arrow from "../../assets/img/delivery/arrow.svg";
 
 export const FasterDelivery = () => {

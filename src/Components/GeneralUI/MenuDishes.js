@@ -53,6 +53,7 @@ const DishContainer = styled.div`
   height: 160px;
   position: relative;
   margin-right: 12px;
+  -webkit-tap-highlight-color: transparent;
   background-color: ${(props) => (props.active ? "#FFF" : "#f3f3f3")};
   border-radius: 60px;
   box-shadow: ${(props) =>

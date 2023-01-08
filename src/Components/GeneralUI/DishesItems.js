@@ -134,6 +134,7 @@ const ItemWrapper = styled.div`
   max-width: 206px;
   position: relative;
   margin-bottom: 15px;
+  -webkit-tap-highlight-color: transparent;
   transition: all 420ms linear;
 
   ${(props) =>

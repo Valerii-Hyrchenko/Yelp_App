@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import flyingBurger from "../../assets/img/burger_fly/burger_fly.svg";
+import flyingBurger from "../../assets/img/burger_fly/burger_fly.png";
 
 export const Promotion = () => {
   return (

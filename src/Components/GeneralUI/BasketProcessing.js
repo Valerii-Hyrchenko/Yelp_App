@@ -10,7 +10,7 @@ import { firstTimeShowBasket } from "../../redux/actions";
 
 import arrow from "../../assets/img/delivery/arrow.svg";
 import trash from "../../assets/icons/basket/trash.svg";
-import inProgressImg from "../../assets/img/in_progress_cooking/in_progress_cooking.svg";
+import inProgressImg from "../../assets/img/in_progress_cooking/in_progress_cooking.png";
 
 export const BasketProcessing = () => {
   const [isOrderComplete, setIsOrderComplete] = useState(false);

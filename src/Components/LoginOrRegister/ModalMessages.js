@@ -45,14 +45,15 @@ const ModalWindowContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #deebfb;
-  padding: 40px 50px;
   border-radius: 15px;
-  width: 45%;
+  width: 100%;
+  height: 100%;
   text-align: center;
   font-weight: 900;
 `;
 
 const ErrorMessage = styled.div`
+  margin-top: 22%;
   & > p:first-child {
     font-weight: 400;
     margin: 15px 0;
