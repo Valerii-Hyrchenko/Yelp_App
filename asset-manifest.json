@@ -1,9 +1,8 @@
 {
   "files": {
     "main.css": "/Yelp_App/static/css/main.8f1bcf41.css",
-    "main.js": "/Yelp_App/static/js/main.630ccb88.js",
+    "main.js": "/Yelp_App/static/js/main.b01f83ad.js",
     "static/media/emoji-title.svg": "/Yelp_App/static/media/emoji-title.67d1a9de5c0dc0698ebcd52a0eb42c3e.svg",
-    "static/media/in_progress_cooking.svg": "/Yelp_App/static/media/in_progress_cooking.68a908d975787863d578d45e42bafb33.svg",
     "static/media/burger_wanted.png": "/Yelp_App/static/media/burger_wanted.5b18a9c42ebbe7058836.png",
     "static/media/pink_chocolate_donut.png": "/Yelp_App/static/media/pink_chocolate_donut.22b171929f38e688357a.png",
     "static/media/pepperoni_pizza.png": "/Yelp_App/static/media/pepperoni_pizza.2b584190603ccb5d7e48.png",
@@ -25,6 +24,7 @@
     "static/media/spartan-all-400-normal.woff": "/Yelp_App/static/media/spartan-all-400-normal.a2bb3e328c2e2f3b49cd.woff",
     "static/media/yellow_apple.svg": "/Yelp_App/static/media/yellow_apple.c188ab9058fec2b9d48a2f61dc8c940d.svg",
     "static/media/red_apple.svg": "/Yelp_App/static/media/red_apple.18cbe82ad1052c47c2dbb9346af2e43e.svg",
+    "static/media/in_progress_cooking.png": "/Yelp_App/static/media/in_progress_cooking.199b3d6985d972ca3702.png",
     "static/media/tomato_storm_cocktail.png": "/Yelp_App/static/media/tomato_storm_cocktail.2308172937140bfce0a9.png",
     "static/media/spartan-latin-400-normal.woff2": "/Yelp_App/static/media/spartan-latin-400-normal.3882df9c2c9e6d9552ed.woff2",
     "static/media/pink_diamond_cocktail.png": "/Yelp_App/static/media/pink_diamond_cocktail.860eb0d4a3a9599cad50.png",
@@ -45,10 +45,10 @@
     "static/media/settings-img.svg": "/Yelp_App/static/media/settings-img.74289f17e0e446e146651dc54ff89813.svg",
     "static/media/add_dish.svg": "/Yelp_App/static/media/add_dish.bd8efbd7e0d849790dfb5b75330aab60.svg",
     "main.8f1bcf41.css.map": "/Yelp_App/static/css/main.8f1bcf41.css.map",
-    "main.630ccb88.js.map": "/Yelp_App/static/js/main.630ccb88.js.map"
+    "main.b01f83ad.js.map": "/Yelp_App/static/js/main.b01f83ad.js.map"
   },
   "entrypoints": [
     "static/css/main.8f1bcf41.css",
-    "static/js/main.630ccb88.js"
+    "static/js/main.b01f83ad.js"
   ]
 }
