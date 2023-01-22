@@ -27,7 +27,7 @@ export const BasketProcessing = () => {
     ({ id }) =>
     ({ target }) => {
       const { value } = target;
-      dispatch(changeQuantityDishes({ id, value }));
+      if (value < 100) dispatch(changeQuantityDishes({ id, value }));
     };
 
   const handleMakeOrder = () => {
