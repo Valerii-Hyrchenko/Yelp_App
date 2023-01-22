@@ -84,7 +84,7 @@ export const BasketProcessing = () => {
                 </DescriptionFlexWrap>
                 <QuantityAndPriceFlexWrap>
                   <QuantityOfItem>
-                    x
+                    <p>x</p>
                     <EnterQuantity
                       onChange={handleChangeDishQuantity(item)}
                       type="number"
@@ -235,14 +235,16 @@ const QuantityAndPriceFlexWrap = styled.div`
   align-items: center;
 `;
 
-const QuantityOfItem = styled.span`
+const QuantityOfItem = styled.p`
   font-weight: 700;
   font-size: 10px;
   margin-right: 5px;
+  display: flex;
+  align-items: center;
 `;
 
 const EnterQuantity = styled.input`
-  max-width: 35px;
+  max-width: 38px;
   outline: none;
   border: 1px solid transparent;
   box-sizing: border-box;
@@ -254,6 +256,7 @@ const EnterQuantity = styled.input`
 const TotalItemPrice = styled.p`
   font-weight: 700;
   font-size: 10px;
+  max-width: 55px;
 `;
 
 const WhenDontChosen = styled.p`

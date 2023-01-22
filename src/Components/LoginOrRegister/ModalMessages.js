@@ -27,7 +27,9 @@ export const ModalMessages = () => {
       ) : null}
       {successRegister ? (
         <ModalWindowContainer>
-          <p>Successful registration! Now you need to log into your account.</p>
+          <SuccessfulMessage>
+            Successful registration! Now you need to log into your account.
+          </SuccessfulMessage>
           <AgreeButtonWrapper>
             <AgreeButton onClick={() => dispatch(clearSuccessMessage())}>
               OK
@@ -50,6 +52,11 @@ const ModalWindowContainer = styled.div`
   height: 100%;
   text-align: center;
   font-weight: 900;
+`;
+
+const SuccessfulMessage = styled.p`
+  margin-top: 22%;
+  padding: 0 30px;
 `;
 
 const ErrorMessage = styled.div`
