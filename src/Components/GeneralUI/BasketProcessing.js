@@ -84,7 +84,7 @@ export const BasketProcessing = () => {
                 </DescriptionFlexWrap>
                 <QuantityAndPriceFlexWrap>
                   <QuantityOfItem>
-                    <p>x</p>
+                    <span>x</span>
                     <EnterQuantity
                       onChange={handleChangeDishQuantity(item)}
                       type="number"
