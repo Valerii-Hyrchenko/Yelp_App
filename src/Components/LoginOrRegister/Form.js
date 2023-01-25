@@ -143,6 +143,24 @@ const ArrowBackImgWrap = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
+
+  @media (max-width: 1410px) {
+    top: -48px;
+    left: -62px;
+  }
+
+  @media (max-width: 1300px) {
+    top: -37px;
+    left: -48px;
+  }
+
+  @media (max-width: 550px) {
+    left: -20px;
+  }
+
+  @media (max-width: 380px) {
+    left: -15px;
+  }
 `;
 
 const ArrowBackTitle = styled.p`
@@ -150,11 +168,19 @@ const ArrowBackTitle = styled.p`
   font-size: 12px;
   font-style: italic;
   margin-top: 3px;
+
+  @media (max-width: 550px) {
+    font-size: 10px;
+  }
 `;
 
 const ArrowBackImg = styled.img`
   width: 28px;
   margin-right: 8px;
+
+  @media (max-width: 550px) {
+    width: 24px;
+  }
 `;
 
 const InputWrapper = styled.div`

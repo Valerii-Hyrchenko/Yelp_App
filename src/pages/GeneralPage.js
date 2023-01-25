@@ -83,14 +83,6 @@ export const GeneralPage = () => {
   );
 };
 
-// const PrivateRoute = ({ children }) => {
-//   const currentAuthUser = useSelector(
-//     (state) => state.currentAuthUser.currentAuthUser
-//   );
-//   if (currentAuthUser === null) return <Navigate to={"/login"} />;
-//   return children;
-// };
-
 const GeneralPageFlexWrapper = styled.div`
   display: flex;
   justify-content: space-between;

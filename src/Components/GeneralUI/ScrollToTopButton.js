@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import arrowUp from "../../assets/icons/arrow_up/arrow_up.svg";
+import arrowUp from "../../assets/icons/arrow/arrow_up.svg";
 
 export const ScrollToTopButton = () => {
   const [isShowButton, setIsShowButton] = useState(false);

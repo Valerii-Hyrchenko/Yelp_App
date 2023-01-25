@@ -37,6 +37,9 @@ export const Button = styled.button`
   cursor: pointer;
   transition: all 350ms linear;
 
+  @media (max-width: 1080px) {
+    font-size: 12px;
+  }
   ${(props) =>
     props.signUp &&
     `

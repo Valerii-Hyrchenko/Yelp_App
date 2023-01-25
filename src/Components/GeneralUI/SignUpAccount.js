@@ -39,6 +39,10 @@ const SignUpTitle = styled.p`
   font-weight: 900;
   margin-bottom: 10px;
   text-align: center;
+
+  @media (max-width: 1080px) {
+    font-size: 14px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
