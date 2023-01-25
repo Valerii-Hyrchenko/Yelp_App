@@ -7,20 +7,12 @@ import { Loader } from "./Components/LoginOrRegister/Loader";
 import { Navigate, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 const App = () => {
+  const loading = useSelector((state) => state.loader.loading);
   const currentAuthUser = useSelector(
     (state) => state.currentAuthUser.currentAuthUser
   );
-  const loading = useSelector((state) => state.loader.loading);
-  useEffect(() => {
-    if (currentAuthUser === null) {
-      localStorage.setItem("authUser", JSON.stringify(null));
-    } else {
-      localStorage.setItem("authUser", JSON.stringify(currentAuthUser));
-    }
-  }, [currentAuthUser]);
 
   return (
     <AppContainer>
@@ -28,32 +20,17 @@ const App = () => {
         <Loader />
       ) : (
         <Routes>
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <GeneralPage />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/" element={<GeneralPage />} />
           <Route
             path="/login"
             element={currentAuthUser ? <Navigate to="/" /> : <LoginPage />}
           />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       )}
     </AppContainer>
   );
-};
-
-const PrivateRoute = ({ children }) => {
-  const currentAuthUser = useSelector(
-    (state) => state.currentAuthUser.currentAuthUser
-  );
-  if (currentAuthUser === null) return <Navigate to={"/login"} />;
-  return children;
 };
 
 export default App;

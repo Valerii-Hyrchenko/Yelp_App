@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { useNav } from "../../hooks/useNav";
 import { ModalMessages } from "./ModalMessages";
 
+import arrowBack from "../../assets/icons/arrow/arrow_back.svg";
+
 export const Form = ({ pageType }) => {
   let currentSchemeValid = pageType === "login" ? loginScheme : registerScheme;
   let currentInputConfig =
@@ -46,6 +48,10 @@ export const Form = ({ pageType }) => {
   return (
     <FormWrapper>
       <FormForPage onSubmit={handleSubmit}>
+        <ArrowBackImgWrap onClick={() => goTo("/")}>
+          <ArrowBackImg src={arrowBack} alt="arrow_back" />
+          <ArrowBackTitle>back to menu</ArrowBackTitle>
+        </ArrowBackImgWrap>
         {currentInputConfig.map(({ id, label, placeholder, name, type }) => (
           <InputWrapper key={id}>
             <Label htmlFor={id}>
@@ -126,7 +132,30 @@ const FormWrapper = styled.div`
   }
 `;
 
-const FormForPage = styled.form``;
+const FormForPage = styled.form`
+  position: relative;
+`;
+
+const ArrowBackImgWrap = styled.div`
+  position: absolute;
+  top: -60px;
+  left: -75px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`;
+
+const ArrowBackTitle = styled.p`
+  font-weight: 900;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 3px;
+`;
+
+const ArrowBackImg = styled.img`
+  width: 28px;
+  margin-right: 8px;
+`;
 
 const InputWrapper = styled.div`
   margin-bottom: 16px;
@@ -148,7 +177,7 @@ const InputForPage = styled.input`
   line-height: 18px;
   text-decoration-line: ${(props) =>
     props.type !== "password" ? "underline" : ""};
-  color: #cc9696;
+  color: rgb(145, 68, 68);
   box-sizing: border-box;
 
   &::placeholder {

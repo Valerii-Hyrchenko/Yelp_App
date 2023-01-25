@@ -1,6 +1,6 @@
 import Menu from "../Components/GeneralUI/Menu";
-import SignOutFromApp from "../Components/GeneralUI/SignOutFromApp";
 import Avatar from "../Components/GeneralUI/Avatar";
+import SignUpAccount from "../Components/GeneralUI/SignUpAccount";
 import FasterDelivery from "../Components/GeneralUI/FasterDelivery";
 import Title from "../Components/GeneralUI/Title";
 import MenuDishes from "../Components/GeneralUI/MenuDishes";
@@ -13,6 +13,8 @@ import { PopupNewsBtn } from "../Components/GeneralUI/PopupNewsBtn";
 import { BurgerMenuBtn } from "../Components/GeneralUI/BurgerMenuBtn";
 import styled from "styled-components";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export const GeneralPage = () => {
   const [isNewsCheckboxChecked, setIsNewsCheckboxChecked] = useState(false);
@@ -22,14 +24,24 @@ export const GeneralPage = () => {
   const handleLeftBarSwitcher = () =>
     setIsBurgerCheckboxChecked((prev) => !prev);
 
+  const currentAuthUser = useSelector(
+    (state) => state.currentAuthUser.currentAuthUser
+  );
+  useEffect(() => {
+    if (currentAuthUser === null) {
+      localStorage.setItem("authUser", JSON.stringify(null));
+    } else {
+      localStorage.setItem("authUser", JSON.stringify(currentAuthUser));
+    }
+  }, [currentAuthUser]);
+
   return (
     <GeneralPageFlexWrapper>
       <LeftBarWrapper isBurgerCheckboxChecked={isBurgerCheckboxChecked}>
         <LeftBarOutsideSpace onClick={handleLeftBarSwitcher} />
         <LeftBarContainer>
-          <Avatar />
+          {currentAuthUser ? <Avatar /> : <SignUpAccount />}
           <Menu />
-          <SignOutFromApp />
           <FasterDelivery />
         </LeftBarContainer>
       </LeftBarWrapper>
@@ -70,6 +82,14 @@ export const GeneralPage = () => {
     </GeneralPageFlexWrapper>
   );
 };
+
+// const PrivateRoute = ({ children }) => {
+//   const currentAuthUser = useSelector(
+//     (state) => state.currentAuthUser.currentAuthUser
+//   );
+//   if (currentAuthUser === null) return <Navigate to={"/login"} />;
+//   return children;
+// };
 
 const GeneralPageFlexWrapper = styled.div`
   display: flex;

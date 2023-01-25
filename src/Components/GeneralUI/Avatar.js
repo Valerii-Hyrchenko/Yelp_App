@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import avatar from "../../assets/icons/avatar/avatar.svg";
+import SignOutFromApp from "./SignOutFromApp";
 import { memo } from "react";
 
 const Avatar = () => {
@@ -15,6 +16,7 @@ const Avatar = () => {
         <Img src={avatar} alt="avatar-img" />
       </ImgContainer>
       <AvatarTitle>{email}</AvatarTitle>
+      <SignOutFromApp />
     </AvatarWrapper>
   );
 };

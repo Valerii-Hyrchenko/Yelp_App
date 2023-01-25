@@ -16,19 +16,19 @@ const SignOutFromApp = () => {
   };
   return (
     <SignOutButtonWrap>
-      <SignOutButton onClick={handleSignOut}>Sign out</SignOutButton>
+      <Button onClick={handleSignOut}>Sign out</Button>
     </SignOutButtonWrap>
   );
 };
 
 const SignOutButtonWrap = styled.div`
   text-align: center;
-  margin-top: 30px;
+  margin-top: 18px;
 `;
 
-const SignOutButton = styled.button`
+export const Button = styled.button`
   font-family: "Spartan";
-  border: 1px solid #fff;
+  border: 1px solid transparent;
   color: #fff;
   padding: 12px 30px;
   border-radius: 15px;
@@ -36,6 +36,12 @@ const SignOutButton = styled.button`
   font-weight: 900;
   cursor: pointer;
   transition: all 350ms linear;
+
+  ${(props) =>
+    props.signUp &&
+    `
+    padding: 12px 10px;
+  `}
 
   &:hover {
     background-color: transparent;
