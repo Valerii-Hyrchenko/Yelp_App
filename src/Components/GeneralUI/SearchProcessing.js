@@ -43,7 +43,7 @@ export const SearchProcessing = ({ isSearchDeleted }) => {
     setTimerId(
       setTimeout(() => {
         if (value) goToSearch(value);
-      }, 1500)
+      }, 500)
     );
   };
 
