@@ -6,7 +6,7 @@ const Title = () => {
   return (
     <TitleContainer>
       <TitleUI>
-        Welcome To Lucknow
+        Welcome To Yelp Menu
         <EmojiImg src={emoji} alt="title-emoji" />
       </TitleUI>
     </TitleContainer>
@@ -21,7 +21,7 @@ const TitleUI = styled.h1`
   font-weight: 800;
   font-size: 48px;
   line-height: 65px;
-  max-width: 320px;
+  max-width: 335px;
 
   @media (max-width: 1080px) {
     margin-left: 40px;
@@ -39,14 +39,13 @@ const TitleUI = styled.h1`
   }
 
   @media (max-width: 410px) {
-    font-size: 26px;
+    font-size: 25px;
     line-height: 28px;
     margin-left: 15px;
   }
 
   @media (max-width: 360px) {
-    font-size: 24px;
-    line-height: 24px;
+    max-width: 190px;
     margin-left: 10px;
   }
 `;

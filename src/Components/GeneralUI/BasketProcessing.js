@@ -25,8 +25,7 @@ export const BasketProcessing = () => {
 
   const handleChangeDishQuantity =
     ({ id }) =>
-    ({ target }) => {
-      const { value } = target;
+    ({ target: { value } }) => {
       if (value < 100) dispatch(changeQuantityDishes({ id, value }));
     };
 
@@ -37,34 +36,32 @@ export const BasketProcessing = () => {
     } else return;
   };
 
+  const handleGoBackArrow = () => {
+    dispatch(hideBasket());
+    if (selectedDishes.length > 0) {
+      dispatch(firstTimeHideBasket());
+    }
+  };
+
+  const handleCloseOrder = () => {
+    dispatch(hideBasket());
+    dispatch(clearBasket());
+    dispatch(firstTimeShowBasket());
+  };
+
   return (
     <BasketProcessingContainer>
       {isOrderComplete ? (
         <InProgressCookingWrap>
           <InProgressCookingImg src={inProgressImg} alt="in-progress-img" />
           <InProgressTitle>in the process of cooking...</InProgressTitle>
-          <OrderButton
-            onClick={() => {
-              dispatch(hideBasket());
-              dispatch(clearBasket());
-              dispatch(firstTimeShowBasket());
-            }}
-          >
-            Order more
-          </OrderButton>
+          <OrderButton onClick={handleCloseOrder}>Order more</OrderButton>
         </InProgressCookingWrap>
       ) : (
         <ProcessingWrapper>
           <BasketTitleFlexWrap>
             <BasketTitle>Basket</BasketTitle>
-            <ArrowWrapper
-              onClick={() => {
-                dispatch(hideBasket());
-                if (selectedDishes.length > 0) {
-                  dispatch(firstTimeHideBasket());
-                }
-              }}
-            >
+            <ArrowWrapper onClick={handleGoBackArrow}>
               <ArrowImg src={arrow} alt="basket-img" />
             </ArrowWrapper>
           </BasketTitleFlexWrap>

@@ -42,6 +42,9 @@ const MenuDishesWrapper = styled.div`
     flex-wrap: wrap;
     height: 180px;
   }
+  @media (max-width: 410px) {
+    margin: 18px 0 32px;
+  }
 
   @media (max-width: 360px) {
     max-width: 278px;

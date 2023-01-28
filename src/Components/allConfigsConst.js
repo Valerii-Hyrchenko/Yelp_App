@@ -3,7 +3,7 @@ import doubleBurger from "../assets/img/dishes_items/dishes/double_burger.png";
 import fishBurger from "../assets/img/dishes_items/dishes/fish_burger.png";
 
 import butterChicken from "../assets/img/dishes_items/dishes/butter_chicken.png";
-import salmonSalad from "../assets/img/dishes_items/dishes/salmon.png";
+import salmon from "../assets/img/dishes_items/dishes/salmon.png";
 import chickenBiryani from "../assets/img/dishes_items/dishes/chicken_biryani.png";
 import redSalad from "../assets/img/dishes_items/dishes/red_salad.png";
 import tomatoChiken from "../assets/img/dishes_items/dishes/tomato_chicken.png";
@@ -52,17 +52,17 @@ export const menuConfig = [
 
 export const menuDishesConfig = [
   { id: Math.floor(Math.random() * 100000), title: "All", img: allDishes },
-  { id: Math.floor(Math.random() * 100000), title: "Burger", img: burger },
-  { id: Math.floor(Math.random() * 100000), title: "Pizza", img: pizza },
-  { id: Math.floor(Math.random() * 100000), title: "Salads", img: salads },
-  { id: Math.floor(Math.random() * 100000), title: "Donut", img: donut },
+  { id: Math.floor(Math.random() * 100000), title: "Burgers", img: burger },
+  { id: Math.floor(Math.random() * 100000), title: "Pizzas", img: pizza },
+  { id: Math.floor(Math.random() * 100000), title: "Hotly", img: salads },
+  { id: Math.floor(Math.random() * 100000), title: "Donuts", img: donut },
   { id: Math.floor(Math.random() * 100000), title: "Drinks", img: drinks },
 ];
 
 export const dishesConfig = [
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Burger",
+    group: "Burgers",
     img: wantedBurger,
     title: "Burger Wanted",
     text: "Veal, Zoodies, Garnein Sesasam Dessigns, Redeshchein, Avocade",
@@ -71,7 +71,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Burger",
+    group: "Burgers",
     img: doubleBurger,
     title: "Double Oliver",
     text: "Veal, Zoodies, Cheese, Garnein Sesasam Dessigns, Redeshchein",
@@ -80,7 +80,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Burger",
+    group: "Burgers",
     img: fishBurger,
     title: "Fishburger",
     text: "Fish, Zoodies, Avocado, Cheese, Garnein Sesasam Dessigns, Sous",
@@ -89,7 +89,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Pizza",
+    group: "Pizzas",
     img: californiaPizza,
     title: "California",
     text: "Flat base, Sous, Oil, Oregano, Meat, Tomato, Olives, Mozzarella",
@@ -98,7 +98,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Pizza",
+    group: "Pizzas",
     img: margaritaPizza,
     title: "Margarita",
     text: "Flat base, Sous, Oil, Oregano, Tomato, Mozzarella, Parmesan",
@@ -107,7 +107,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Pizza",
+    group: "Pizzas",
     img: pepperoniPizza,
     title: "Pepperoni",
     text: "Flat base, Sous, Oil, Sausage pepperoni, Oregano, Tomato, Mozzarella",
@@ -116,7 +116,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Salads",
+    group: "Hotly",
     img: tomatoChiken,
     title: "Tomato Chiken",
     text: "Rise, Sous-vide Chicken, Penaut Satay, Babyspian",
@@ -125,8 +125,8 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Salads",
-    img: salmonSalad,
+    group: "Hotly",
+    img: salmon,
     title: "Hi, Salmon",
     text: "Rise, Zoodies, Garnein Dressings, Avocado, Edanmame, Maris",
     quantity: 1,
@@ -134,7 +134,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Salads",
+    group: "Hotly",
     img: butterChicken,
     title: "Butter Chicken",
     text: "Potato, Butter, Garnein Dressings, Avocado, Chicken, Maris",
@@ -143,7 +143,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Salads",
+    group: "Hotly",
     img: chickenBiryani,
     title: "Chicken Biryani",
     text: "Noodles, Cheese, Garnein Dressings, Avocado, Chicken, Rise",
@@ -152,7 +152,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Salads",
+    group: "Hotly",
     img: redSalad,
     title: "Red Dragon",
     text: "Tomato, Pork, Potato, Beet, Garnein Dressings, Avocado, Veal",
@@ -161,7 +161,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Donut",
+    group: "Donuts",
     img: chocolateDonut,
     title: "Chocolate Donut",
     text: "Flour, Chocolate, Sugar, Eggs, Salt, Shortening, Milk Solids",
@@ -170,7 +170,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Donut",
+    group: "Donuts",
     img: vanillaDonut,
     title: "Vanilla Donut",
     text: "Flour, Leavening Agent, Sugar, Eggs, Salt, Shortening, Milk Solids",
@@ -179,7 +179,7 @@ export const dishesConfig = [
   },
   {
     id: Math.floor(Math.random() * 100000),
-    group: "Donut",
+    group: "Donuts",
     img: pinkChocolateDonut,
     title: "Pink Donut",
     text: "Flour, Pink Chocolate, Sugar, Eggs, Salt, Shortening, Milk Solids",

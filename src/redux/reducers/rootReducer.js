@@ -5,6 +5,7 @@ import { loaderReducer } from "./loaderReducer";
 import { showOrHideBasketReducer } from "./showOrHideBasketReducer";
 import { firstTimeBasketShowReducer } from "./firstTimeBasketShowReducer";
 import { basketProcessingReducer } from "./basketProcessingReducer";
+import { searchProcessingReducer } from "./searchProcessingReduser";
 
 export const rootReducer = combineReducers({
   activeDishGroup: activeGroupReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   isBasketShow: showOrHideBasketReducer,
   basketProcessing: basketProcessingReducer,
   isFirsTimeBasketShow: firstTimeBasketShowReducer,
+  searchResult: searchProcessingReducer,
 });

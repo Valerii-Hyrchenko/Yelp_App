@@ -1,32 +1,80 @@
 import styled from "styled-components";
 import { BasketProcessing } from "./BasketProcessing";
+import { SearchProcessing } from "./SearchProcessing";
 import { showBasket } from "../../redux/actions";
+import { clearSearch } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { memo } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 
 import searchIcon from "../../assets/icons/basket/search_icon.svg";
+import closeSearchIcon from "../../assets/icons/close_modal/close_search.svg";
 import basketIcon from "../../assets/icons/basket/basket-icon.svg";
 
 const BasketAndSearch = () => {
+  const [isSearchShow, setIsSearchShow] = useState(false);
+  const [isSearchDeleted, setIsSearchDeleted] = useState(false);
   const dispatch = useDispatch();
   const isBasketShow = useSelector((state) => state.isBasketShow.isShow);
   const selectedDishes = useSelector(
     (state) => state.basketProcessing.selectedDishes
   );
+  const refSearch = useRef();
+
+  const handleShowSearch = () => {
+    if (!isSearchShow) {
+      setIsSearchDeleted(false);
+      setIsSearchShow(true);
+    } else {
+      setIsSearchDeleted(true);
+      setTimeout(() => {
+        setIsSearchShow(false);
+        dispatch(clearSearch());
+      }, 750);
+    }
+  };
+
+  useEffect(() => {
+    if (isSearchShow) {
+      const handleClickOutside = (event) => {
+        if (!refSearch.current.contains(event.target)) {
+          setIsSearchDeleted(true);
+          setTimeout(() => {
+            setIsSearchShow(false);
+            dispatch(clearSearch());
+          }, 750);
+        }
+      };
+      document.addEventListener("click", handleClickOutside);
+      return () => {
+        document.removeEventListener("click", handleClickOutside);
+      };
+    }
+  }, [isSearchShow]);
 
   return (
     <BasketFlexContainer>
-      <SearchWrapper>
-        <SearchImg src={searchIcon} alt="search-icon" />
+      <SearchWrapper ref={refSearch}>
+        {isSearchShow ? (
+          <SearchProcessing isSearchDeleted={isSearchDeleted} />
+        ) : null}
+        <SearchImgWrapper
+          isSearchShow={isSearchShow}
+          onClick={handleShowSearch}
+        >
+          <SearchImg
+            src={isSearchShow ? closeSearchIcon : searchIcon}
+            alt="search-icon"
+          />
+        </SearchImgWrapper>
       </SearchWrapper>
-      <BasketWrapper onClick={() => dispatch(showBasket())}>
+      <BasketImgWrapper onClick={() => dispatch(showBasket())}>
         {selectedDishes.length > 0 ? (
           <DishesCounterWrap>
             <DishesCounter>{selectedDishes.length}</DishesCounter>
           </DishesCounterWrap>
         ) : null}
         <BasketImg src={basketIcon} alt="basket-icon" />
-      </BasketWrapper>
+      </BasketImgWrapper>
       <BasketProcessingWrapper>
         {isBasketShow ? <BasketProcessing /> : null}
       </BasketProcessingWrapper>
@@ -38,6 +86,10 @@ const BasketFlexContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   position: relative;
+
+  @media (max-width: 410px) {
+    flex-direction: column-reverse;
+  }
 `;
 const BasketProcessingWrapper = styled.div`
   position: absolute;
@@ -61,12 +113,44 @@ const BasketProcessingWrapper = styled.div`
 `;
 
 const SearchWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const SearchImgWrapper = styled.div`
+  position: relative;
+  z-index: ${(props) => (props.isSearchShow ? 20 : 5)};
+  cursor: pointer;
   padding: 16px;
   background: #f3f3f3;
   border-radius: 15px;
   -webkit-tap-highlight-color: transparent;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   margin-right: 20px;
-  cursor: pointer;
+  animation-name: ${(props) =>
+    props.isSearchShow ? "closingShow" : "searchShow"};
+  animation-duration: 800ms;
+  transition-timing-function: linear;
+
+  @keyframes searchShow {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes closingShow {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   @media (max-width: 740px) {
     padding: 13px;
@@ -81,17 +165,24 @@ const SearchImg = styled.img`
   }
 `;
 
-const BasketWrapper = styled.div`
+const BasketImgWrapper = styled.div`
   padding: 16px;
   background: #666666;
   border-radius: 15px;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   position: relative;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 
   @media (max-width: 740px) {
     padding: 12px;
     max-height: 14px;
+  }
+
+  @media (max-width: 410px) {
+    margin: 0 10px 10px 0;
   }
 `;
 

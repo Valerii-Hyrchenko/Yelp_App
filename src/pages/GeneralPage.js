@@ -213,9 +213,12 @@ const ShowNewsPopupContainer = styled.div`
       top: -33px;
     }
 
+    @media (max-width: 410px) {
+      top: -10px;
+    }
+
     @media (max-width: 360px) {
       right: 19px;
-      top: -36px;
     }
   }
 
@@ -229,6 +232,10 @@ const ShowNewsPopupContainer = styled.div`
     @media (max-width: 580px) {
       right: -15px;
       top: 16px;
+    }
+
+    @media (max-width: 410px) {
+      top: 46px;
     }
 
     @media (max-width: 360px) {

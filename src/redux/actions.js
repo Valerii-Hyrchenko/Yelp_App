@@ -11,6 +11,8 @@ import { HIDE_BASKET } from "./types";
 import { CLEAR_BASKET } from "./types";
 import { SELECTED_DISHES_IN_BASKET } from "./types";
 import { CHANGE_QUANTITY_DISHES } from "./types";
+import { SEARCH_RESULT } from "./types";
+import { CLEAR_SEARCH } from "./types";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -54,6 +56,26 @@ export const firstTimeShowBasket = () => {
 export const firstTimeHideBasket = () => {
   return {
     type: FIRST_TIME_BASKET_HIDE,
+  };
+};
+
+export const updateBasket = (basketItems) => {
+  return {
+    type: SELECTED_DISHES_IN_BASKET,
+    payload: basketItems,
+  };
+};
+
+export const changeQuantityDishes = (dataForChange) => {
+  return {
+    type: CHANGE_QUANTITY_DISHES,
+    payload: dataForChange,
+  };
+};
+
+export const clearBasket = () => {
+  return {
+    type: CLEAR_BASKET,
   };
 };
 
@@ -145,22 +167,15 @@ export const clearSuccessMessage = () => {
   };
 };
 
-export const updateBasket = (basketItems) => {
+export const updateSearchResult = (searchResult) => {
   return {
-    type: SELECTED_DISHES_IN_BASKET,
-    payload: basketItems,
+    type: SEARCH_RESULT,
+    payload: searchResult,
   };
 };
 
-export const changeQuantityDishes = (dataForChange) => {
+export const clearSearch = () => {
   return {
-    type: CHANGE_QUANTITY_DISHES,
-    payload: dataForChange,
-  };
-};
-
-export const clearBasket = () => {
-  return {
-    type: CLEAR_BASKET,
+    type: CLEAR_SEARCH,
   };
 };
