@@ -1,33 +1,18 @@
 {
   "files": {
     "main.css": "/Yelp_App/static/css/main.8f1bcf41.css",
-    "main.js": "/Yelp_App/static/js/main.28dc741c.js",
+    "main.js": "/Yelp_App/static/js/main.8a9b5319.js",
     "static/media/emoji-title.svg": "/Yelp_App/static/media/emoji-title.67d1a9de5c0dc0698ebcd52a0eb42c3e.svg",
-    "static/media/burger_wanted.png": "/Yelp_App/static/media/burger_wanted.5b18a9c42ebbe7058836.png",
-    "static/media/pink_chocolate_donut.png": "/Yelp_App/static/media/pink_chocolate_donut.22b171929f38e688357a.png",
-    "static/media/pepperoni_pizza.png": "/Yelp_App/static/media/pepperoni_pizza.2b584190603ccb5d7e48.png",
-    "static/media/tomato_chicken.png": "/Yelp_App/static/media/tomato_chicken.09d6c6286a4dd826ce61.png",
-    "static/media/vanilla_donut.png": "/Yelp_App/static/media/vanilla_donut.e0cbf3eb29bafb949d7f.png",
     "static/media/burger_fly.png": "/Yelp_App/static/media/burger_fly.a41978ed110e627c30e6.png",
-    "static/media/california_pizza.png": "/Yelp_App/static/media/california_pizza.35752c927b821e9e6e0a.png",
-    "static/media/chicken_biryani.png": "/Yelp_App/static/media/chicken_biryani.c3abcc9308e97f629f63.png",
-    "static/media/margarita_pizza.png": "/Yelp_App/static/media/margarita_pizza.02addbbef160e46095a2.png",
-    "static/media/chocolate_donut.png": "/Yelp_App/static/media/chocolate_donut.a47600eaa828ac22c228.png",
-    "static/media/red_salad.png": "/Yelp_App/static/media/red_salad.d73f08821c999d32c5c6.png",
-    "static/media/salmon.png": "/Yelp_App/static/media/salmon.4986e70fd26fd1d7c4e2.png",
-    "static/media/fish_burger.png": "/Yelp_App/static/media/fish_burger.1d700bf2fb0a28183776.png",
-    "static/media/double_burger.png": "/Yelp_App/static/media/double_burger.3acc84d8a6b19fa605db.png",
-    "static/media/butter_chicken.png": "/Yelp_App/static/media/butter_chicken.92f53db26eb44f31d948.png",
     "static/media/leaf.svg": "/Yelp_App/static/media/leaf.a923d22061e4870e6086988c702ccb80.svg",
     "static/media/grapes.svg": "/Yelp_App/static/media/grapes.300fbbc16a92ea9214cf4bf1fe34c352.svg",
     "static/media/delivery-man.png": "/Yelp_App/static/media/delivery-man.63c29f07614d85d89c6d.png",
     "static/media/spartan-all-400-normal.woff": "/Yelp_App/static/media/spartan-all-400-normal.a2bb3e328c2e2f3b49cd.woff",
     "static/media/yellow_apple.svg": "/Yelp_App/static/media/yellow_apple.c188ab9058fec2b9d48a2f61dc8c940d.svg",
+    "static/media/star.svg": "/Yelp_App/static/media/star.a8f60a817a7833486629146f31987eb2.svg",
     "static/media/red_apple.svg": "/Yelp_App/static/media/red_apple.18cbe82ad1052c47c2dbb9346af2e43e.svg",
     "static/media/in_progress_cooking.png": "/Yelp_App/static/media/in_progress_cooking.199b3d6985d972ca3702.png",
-    "static/media/tomato_storm_cocktail.png": "/Yelp_App/static/media/tomato_storm_cocktail.2308172937140bfce0a9.png",
     "static/media/spartan-latin-400-normal.woff2": "/Yelp_App/static/media/spartan-latin-400-normal.3882df9c2c9e6d9552ed.woff2",
-    "static/media/pink_diamond_cocktail.png": "/Yelp_App/static/media/pink_diamond_cocktail.860eb0d4a3a9599cad50.png",
     "static/media/spartan-latin-ext-400-normal.woff2": "/Yelp_App/static/media/spartan-latin-ext-400-normal.93f14a43648bff9198b3.woff2",
     "static/media/settings.svg": "/Yelp_App/static/media/settings.639693b651229e77e0458212b511ccc0.svg",
     "static/media/avatar.svg": "/Yelp_App/static/media/avatar.aa9018dfad2826598167400384212d66.svg",
@@ -48,10 +33,10 @@
     "static/media/settings-img.svg": "/Yelp_App/static/media/settings-img.74289f17e0e446e146651dc54ff89813.svg",
     "static/media/add_dish.svg": "/Yelp_App/static/media/add_dish.bd8efbd7e0d849790dfb5b75330aab60.svg",
     "main.8f1bcf41.css.map": "/Yelp_App/static/css/main.8f1bcf41.css.map",
-    "main.28dc741c.js.map": "/Yelp_App/static/js/main.28dc741c.js.map"
+    "main.8a9b5319.js.map": "/Yelp_App/static/js/main.8a9b5319.js.map"
   },
   "entrypoints": [
     "static/css/main.8f1bcf41.css",
-    "static/js/main.28dc741c.js"
+    "static/js/main.8a9b5319.js"
   ]
 }
