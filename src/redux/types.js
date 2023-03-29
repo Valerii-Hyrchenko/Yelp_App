@@ -1,4 +1,5 @@
 export const SELECT_GROUP = "SELECT_GROUP";
+export const GET_DISHES_ITEMS_CONFIG = "GET_DISHES_ITEMS_CONFIG";
 export const REGISTER_USER = "REGISTER_USER";
 export const LOGIN_USER = "LOGIN_USER";
 export const SIGN_OUT_USER = "SIGN_OUT_USER";

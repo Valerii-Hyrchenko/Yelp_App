@@ -5,7 +5,7 @@ import { selectGroup } from "../../redux/actions";
 import { menuDishesConfig } from "../allConfigsConst";
 
 const MenuDishes = () => {
-  const [activeDishGroup, setActiveDishGroup] = useState(menuDishesConfig[0]); //передай в компонент DishesItems
+  const [activeDishGroup, setActiveDishGroup] = useState(menuDishesConfig[0]);
   const dispatch = useDispatch();
   const handleChangeActiveDish = (item) => {
     setActiveDishGroup(item);
@@ -117,6 +117,7 @@ const DishTitle = styled.p`
   font-weight: 500;
   font-size: 14px;
   color: #585858;
+  text-transform: capitalize;
   transition: all 200ms linear;
 
   @media (max-width: 740px) {

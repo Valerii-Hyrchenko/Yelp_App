@@ -40,6 +40,7 @@ const ScrollToTopContainer = styled.div`
   position: absolute;
   right: 77px;
   cursor: pointer;
+  z-index: 1;
 
   @media (max-width: 740px) {
     right: 53px;

@@ -12,9 +12,10 @@ import { dishesConfig } from "../allConfigsConst";
 export const SearchProcessing = ({ isSearchDeleted }) => {
   const [timerId, setTimerId] = useState("");
   const dispatch = useDispatch();
-  const isFirstBasketShow = useSelector(
-    (state) => state.isFirsTimeBasketShow.isFirstShow
-  );
+  const {
+    isFirsTimeBasketShow: { isFirstShow },
+    configItems: { dishesItemsConfig },
+  } = useSelector((state) => state);
   const searchResultArr = useSelector(
     (state) => state.searchResult.searchResult
   );
@@ -33,7 +34,7 @@ export const SearchProcessing = ({ isSearchDeleted }) => {
   });
 
   const handleCheckDish = (item) => {
-    if (isFirstBasketShow) dispatch(firstTimeHideBasket());
+    if (isFirstShow) dispatch(firstTimeHideBasket());
     dispatch(updateBasket(item));
   };
 
@@ -48,7 +49,21 @@ export const SearchProcessing = ({ isSearchDeleted }) => {
   };
 
   const goToSearch = (textToSearch) => {
-    const searchResult = dishesConfig.filter((item) =>
+    const getAllItemsArr = () => {
+      let allItemsArr = [];
+      const convertDishItemsToArr = (itemsObj) => {
+        for (let item in itemsObj) {
+          if (itemsObj[item].id) {
+            allItemsArr.push(itemsObj[item]);
+          } else {
+            convertDishItemsToArr(itemsObj[item]);
+          }
+        }
+      };
+      convertDishItemsToArr(dishesItemsConfig);
+      return allItemsArr;
+    };
+    const searchResult = getAllItemsArr().filter((item) =>
       item.title.toLowerCase().includes(textToSearch, 0)
     );
     dispatch(updateSearchResult(searchResult));
@@ -288,12 +303,14 @@ const SearchInput = styled.input`
   outline: none;
   margin-right: -92px;
   width: 280px;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
-    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
-    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 
   &:focus {
-    box-shadow: 0px 3px 20px 6px rgba(0, 0, 0, 0.75);
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   }
 
   @media (max-width: 740px) {

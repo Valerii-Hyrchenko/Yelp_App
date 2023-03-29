@@ -12,9 +12,8 @@ import { News } from "../Components/GeneralUI/News";
 import { PopupNewsBtn } from "../Components/GeneralUI/PopupNewsBtn";
 import { BurgerMenuBtn } from "../Components/GeneralUI/BurgerMenuBtn";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 export const GeneralPage = () => {
   const [isNewsCheckboxChecked, setIsNewsCheckboxChecked] = useState(false);

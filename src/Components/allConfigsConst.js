@@ -1,25 +1,3 @@
-import wantedBurger from "../assets/img/dishes_items/dishes/burger_wanted.png";
-import doubleBurger from "../assets/img/dishes_items/dishes/double_burger.png";
-import fishBurger from "../assets/img/dishes_items/dishes/fish_burger.png";
-
-import butterChicken from "../assets/img/dishes_items/dishes/butter_chicken.png";
-import salmon from "../assets/img/dishes_items/dishes/salmon.png";
-import chickenBiryani from "../assets/img/dishes_items/dishes/chicken_biryani.png";
-import redSalad from "../assets/img/dishes_items/dishes/red_salad.png";
-import tomatoChiken from "../assets/img/dishes_items/dishes/tomato_chicken.png";
-
-import californiaPizza from "../assets/img/dishes_items/dishes/california_pizza.png";
-import margaritaPizza from "../assets/img/dishes_items/dishes/margarita_pizza.png";
-import pepperoniPizza from "../assets/img/dishes_items/dishes/pepperoni_pizza.png";
-
-import limeFreshness from "../assets/img/dishes_items/dishes/lime_freshness_cocktail.png";
-import pinkDiamond from "../assets/img/dishes_items/dishes/pink_diamond_cocktail.png";
-import tomatoStorm from "../assets/img/dishes_items/dishes/tomato_storm_cocktail.png";
-
-import chocolateDonut from "../assets/img/dishes_items/dishes/chocolate_donut.png";
-import vanillaDonut from "../assets/img/dishes_items/dishes/vanilla_donut.png";
-import pinkChocolateDonut from "../assets/img/dishes_items/dishes/pink_chocolate_donut.png";
-
 import home from "../assets/icons/menu/home.svg";
 import menu from "../assets/icons/menu/menu.svg";
 import settings from "../assets/icons/menu/settings.svg";
@@ -42,224 +20,70 @@ import miniAva2 from "../assets/icons/mini_icons/mini_ava_2.png";
 import miniAva3 from "../assets/icons/mini_icons/mini_ava_alka.png";
 
 import miniLike from "../assets/icons/mini_icons/mini_like.png";
+import star from "../assets/img/dishes_items/rating/star.svg";
+let id = Date.now();
 
 export const menuConfig = [
-  { id: Math.floor(Math.random() * 100000), img: home, title: "Home" },
-  { id: Math.floor(Math.random() * 100000), img: menu, title: "Menu" },
-  { id: Math.floor(Math.random() * 100000), img: settings, title: "Settings" },
-  { id: Math.floor(Math.random() * 100000), img: trending, title: "Trending" },
+  { id: id++, img: home, title: "Home" },
+  { id: id++, img: menu, title: "Menu" },
+  { id: id++, img: settings, title: "Settings" },
+  { id: id++, img: trending, title: "Trending" },
 ];
 
 export const menuDishesConfig = [
-  { id: Math.floor(Math.random() * 100000), title: "All", img: allDishes },
-  { id: Math.floor(Math.random() * 100000), title: "Burgers", img: burger },
-  { id: Math.floor(Math.random() * 100000), title: "Pizzas", img: pizza },
-  { id: Math.floor(Math.random() * 100000), title: "Hotly", img: salads },
-  { id: Math.floor(Math.random() * 100000), title: "Donuts", img: donut },
-  { id: Math.floor(Math.random() * 100000), title: "Drinks", img: drinks },
-];
-
-export const dishesConfig = [
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Burgers",
-    img: wantedBurger,
-    title: "Burger Wanted",
-    text: "Veal, Zoodies, Garnein Sesasam Dessigns, Redeshchein, Avocade",
-    quantity: 1,
-    price: 29,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Burgers",
-    img: doubleBurger,
-    title: "Double Oliver",
-    text: "Veal, Zoodies, Cheese, Garnein Sesasam Dessigns, Redeshchein",
-    quantity: 1,
-    price: 35,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Burgers",
-    img: fishBurger,
-    title: "Fishburger",
-    text: "Fish, Zoodies, Avocado, Cheese, Garnein Sesasam Dessigns, Sous",
-    quantity: 1,
-    price: 38,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Pizzas",
-    img: californiaPizza,
-    title: "California",
-    text: "Flat base, Sous, Oil, Oregano, Meat, Tomato, Olives, Mozzarella",
-    quantity: 1,
-    price: 45,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Pizzas",
-    img: margaritaPizza,
-    title: "Margarita",
-    text: "Flat base, Sous, Oil, Oregano, Tomato, Mozzarella, Parmesan",
-    quantity: 1,
-    price: 35,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Pizzas",
-    img: pepperoniPizza,
-    title: "Pepperoni",
-    text: "Flat base, Sous, Oil, Sausage pepperoni, Oregano, Tomato, Mozzarella",
-    quantity: 1,
-    price: 51,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Hotly",
-    img: tomatoChiken,
-    title: "Tomato Chiken",
-    text: "Rise, Sous-vide Chicken, Penaut Satay, Babyspian",
-    quantity: 1,
-    price: 56,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Hotly",
-    img: salmon,
-    title: "Hi, Salmon",
-    text: "Rise, Zoodies, Garnein Dressings, Avocado, Edanmame, Maris",
-    quantity: 1,
-    price: 69,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Hotly",
-    img: butterChicken,
-    title: "Butter Chicken",
-    text: "Potato, Butter, Garnein Dressings, Avocado, Chicken, Maris",
-    quantity: 1,
-    price: 45,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Hotly",
-    img: chickenBiryani,
-    title: "Chicken Biryani",
-    text: "Noodles, Cheese, Garnein Dressings, Avocado, Chicken, Rise",
-    quantity: 1,
-    price: 52,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Hotly",
-    img: redSalad,
-    title: "Red Dragon",
-    text: "Tomato, Pork, Potato, Beet, Garnein Dressings, Avocado, Veal",
-    quantity: 1,
-    price: 79,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Donuts",
-    img: chocolateDonut,
-    title: "Chocolate Donut",
-    text: "Flour, Chocolate, Sugar, Eggs, Salt, Shortening, Milk Solids",
-    quantity: 1,
-    price: 10,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Donuts",
-    img: vanillaDonut,
-    title: "Vanilla Donut",
-    text: "Flour, Leavening Agent, Sugar, Eggs, Salt, Shortening, Milk Solids",
-    quantity: 1,
-    price: 8,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Donuts",
-    img: pinkChocolateDonut,
-    title: "Pink Donut",
-    text: "Flour, Pink Chocolate, Sugar, Eggs, Salt, Shortening, Milk Solids",
-    quantity: 1,
-    price: 12,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Drinks",
-    img: limeFreshness,
-    title: "Lime Freshness",
-    text: "Tonik, Lime, White Rum, Ice, Mint",
-    quantity: 1,
-    price: 15,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Drinks",
-    img: pinkDiamond,
-    title: "Pink Diamond",
-    text: "Martini Rosso, Absolute, Ice, Cherry Juice",
-    quantity: 1,
-    price: 25,
-  },
-  {
-    id: Math.floor(Math.random() * 100000),
-    group: "Drinks",
-    img: tomatoStorm,
-    title: "Tomato Storm",
-    text: "Tomato Juice, Finlandia, Salt",
-    quantity: 1,
-    price: 22,
-  },
+  { id: id++, title: "all", img: allDishes },
+  { id: id++, title: "burgers", img: burger },
+  { id: id++, title: "pizzas", img: pizza },
+  { id: id++, title: "lunch", img: salads },
+  { id: id++, title: "donuts", img: donut },
+  { id: id++, title: "drinks", img: drinks },
 ];
 
 export const newsConfig = [
   {
-    id: Math.floor(Math.random() * 100000),
+    id: id++,
     icon: chickenIcon,
     background: "#FFF0A5",
     title: "How to cook turkey on Natural Gas",
     miniAva: [
-      { id: Math.floor(Math.random() * 100000), miniAva: miniAva1 },
-      { id: Math.floor(Math.random() * 100000), miniAva: miniAva2 },
+      { id: id++, miniAva: miniAva1 },
+      { id: id++, miniAva: miniAva2 },
     ],
     miniLike,
     likeCount: 28,
   },
   {
-    id: Math.floor(Math.random() * 100000),
+    id: id++,
     icon: coronaIcon,
     background: "#D6F5FF",
     title: "Corona virus update: 3,43,287+ cases",
     miniAva: [
-      { id: Math.floor(Math.random() * 100000), miniAva: miniAva1 },
-      { id: Math.floor(Math.random() * 100000), miniAva: miniAva3 },
+      { id: id++, miniAva: miniAva1 },
+      { id: id++, miniAva: miniAva3 },
     ],
     miniLike,
     likeCount: 28,
   },
   {
-    id: Math.floor(Math.random() * 100000),
+    id: id++,
     icon: cookieIcon,
     background: "#FFDDF0",
     title: "Tasty chunk donuts with chocolate",
     miniAva: [
-      { id: Math.floor(Math.random() * 100000), miniAva: miniAva1 },
-      { id: Math.floor(Math.random() * 100000), miniAva: miniAva3 },
+      { id: id++, miniAva: miniAva1 },
+      { id: id++, miniAva: miniAva3 },
     ],
     miniLike,
     likeCount: 28,
   },
   {
-    id: Math.floor(Math.random() * 100000),
+    id: id++,
     icon: pizzaIcon,
     background: "#C1FFF4",
     title: "Home made double cheese with popcorn respies",
     miniAva: [
-      { id: Math.floor(Math.random() * 100000), miniAva: miniAva1 },
-      { id: Math.floor(Math.random() * 100000), miniAva: miniAva3 },
+      { id: id++, miniAva: miniAva1 },
+      { id: id++, miniAva: miniAva3 },
     ],
     miniLike,
     likeCount: 28,
@@ -305,4 +129,12 @@ export const registerPageConfig = [
     name: "confirmPassword",
     type: "password",
   },
+];
+
+export const ratingConfig = [
+  { id: id++, img: star },
+  { id: id++, img: star },
+  { id: id++, img: star },
+  { id: id++, img: star },
+  { id: id++, img: star },
 ];

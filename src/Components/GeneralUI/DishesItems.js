@@ -1,42 +1,162 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { dishesConfig } from "../allConfigsConst";
-import { useEffect, memo } from "react";
+import { useEffect, memo, useState } from "react";
+import { ref, set, onValue } from "firebase/database";
 import {
   showBasket,
   updateBasket,
   firstTimeShowBasket,
+  getDishesItemsConfig,
 } from "../../redux/actions";
+import { database } from "../../base";
+import { ratingConfig } from "../allConfigsConst";
 import settingsImg from "../../assets/img/dishes_items/settings-img.svg";
-
 import addDishImg from "../../assets/img/dishes_items/add_dish.svg";
 import chosenDishImg from "../../assets/img/dishes_items/chosen_dish.svg";
 
 const DishesItems = () => {
+  const [dishesRating, setDishesRating] = useState([]);
+  const [tooltip, setTooltip] = useState({});
+  const [delTooltipAnim, setDelTooltipAnim] = useState(false);
+  const [activeTooltip, setActiveTooltip] = useState(null);
+  const [timeoutsId, setTimeoutsId] = useState([]);
+
   const dispatch = useDispatch();
-  const selectedDishesGroup = useSelector((state) => state.activeDishGroup);
-  const isFirstBasketShow = useSelector(
-    (state) => state.isFirsTimeBasketShow.isFirstShow
-  );
-  const selectedDishes = useSelector(
-    (state) => state.basketProcessing.selectedDishes
-  );
+  const {
+    activeDishGroup: { activeDishGroup },
+    isFirsTimeBasketShow: { isFirstShow },
+    basketProcessing: { selectedDishes },
+    configItems: { dishesItemsConfig },
+    currentAuthUser: { currentAuthUser },
+  } = useSelector((state) => state);
+
   const changeDish = (item) => dispatch(updateBasket(item));
-  const getCurrentDishesArr = (activeDishGroup) => {
-    if (activeDishGroup === "All") {
-      return dishesConfig;
-    } else {
-      return dishesConfig.filter((item) => item.group === activeDishGroup);
-    }
+
+  const ratingHoverOn =
+    (currentIndex) =>
+    ({ target }) => {
+      let allStars = Array.from(target.parentElement.children);
+      allStars.forEach((item, index) => {
+        item.style.filter =
+          currentIndex >= index || index === 5
+            ? "grayscale(0%)"
+            : "grayscale(100%)";
+      });
+    };
+
+  const ratingHoverOff = ({ target }) => {
+    let allStars = Array.from(target.parentElement.children);
+    allStars.forEach((item, index) =>
+      index !== 5 ? item.removeAttribute("style") : null
+    );
+  };
+
+  const handleSendRating =
+    (item) =>
+    ({ target }) => {
+      if (activeTooltip) activeTooltip.style.display = "none";
+      if (timeoutsId.length > 0)
+        timeoutsId.forEach((item) => clearTimeout(item));
+      let value = +target.attributes[0].value + 1;
+      let tooltip = target.parentElement.lastElementChild;
+      setActiveTooltip(tooltip);
+      const { id, title, group } = item;
+
+      const showTooltip = () => {
+        tooltip.style.display = "block";
+        let delTimeoutId = setTimeout(() => {
+          setDelTooltipAnim(true);
+          let delAnimTimeoutId = setTimeout(() => {
+            tooltip.style.display = "none";
+            setDelTooltipAnim(false);
+            setActiveTooltip(null);
+            setTimeoutsId([]);
+          }, 750);
+          setTimeoutsId((prev) => [...prev, delAnimTimeoutId]);
+        }, 3000);
+        setTimeoutsId((prev) => [...prev, delTimeoutId]);
+      };
+      set(
+        ref(
+          database,
+          `ratingDishes/${id}/${currentAuthUser ? currentAuthUser.uid : null}`
+        ),
+        {
+          id,
+          group,
+          title,
+          points: value,
+        }
+      )
+        .then(() => {
+          setTooltip({
+            text: "Your vote has been successfully counted",
+          });
+          showTooltip();
+        })
+        .catch((error) => {
+          setTooltip({
+            text: `Error:
+            ${error.message.split(":")[1]}.
+            You need to log in to rate`,
+          });
+          showTooltip();
+        });
+    };
+
+  const getCurrentRatingData = () => {
+    const getAveragePoints = (dish) => {
+      let arr = [];
+      for (let user in dish) {
+        if (dish[user].points) {
+          arr.push(dish[user].points);
+        } else {
+          getAveragePoints(dish[user]);
+        }
+      }
+      let points = arr.reduce((acc, value) => acc + value) / arr.length;
+      return Math.round(points);
+    };
+    const starCountRef = ref(database, "/ratingDishes");
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      let dataArr = [];
+      for (let dishId in data) {
+        dataArr.push({ id: dishId, points: getAveragePoints(data[dishId]) });
+      }
+      setDishesRating(dataArr);
+    });
+  };
+
+  const getCurrentDishesArr = () => {
+    let arrToRender = [];
+    const getCurrentObj = () => {
+      for (let group in dishesItemsConfig) {
+        if (activeDishGroup === "all") return dishesItemsConfig;
+        if (group === activeDishGroup) return dishesItemsConfig[group];
+      }
+    };
+    const getCurrentArr = (currentObj) => {
+      for (let item in currentObj) {
+        if (currentObj[item].id) {
+          arrToRender.push(currentObj[item]);
+        } else {
+          getCurrentArr(currentObj[item]);
+        }
+      }
+    };
+    getCurrentArr(getCurrentObj());
+    return arrToRender;
   };
 
   useEffect(() => {
-    if (isFirstBasketShow && selectedDishes.length === 1) {
-      dispatch(showBasket());
-    }
-    if (selectedDishes.length === 0) {
-      dispatch(firstTimeShowBasket());
-    }
+    dispatch(getDishesItemsConfig());
+    getCurrentRatingData();
+  }, []);
+
+  useEffect(() => {
+    if (isFirstShow && selectedDishes.length === 1) dispatch(showBasket());
+    if (selectedDishes.length === 0) dispatch(firstTimeShowBasket());
   }, [selectedDishes]);
 
   return (
@@ -46,12 +166,35 @@ const DishesItems = () => {
         <SettingsImg src={settingsImg} alt="settings-img" />
       </TitleWrapper>
       <ItemsFlexContainer>
-        {getCurrentDishesArr(selectedDishesGroup.activeDishGroup).map(
-          (item) => (
+        {getCurrentDishesArr().map((item) => {
+          let pointsRating = dishesRating.filter(
+            (rating) => rating.id === item.id
+          );
+          return (
             <ItemWrapper
               key={item.id}
               activeCard={selectedDishes.some((dish) => dish.id === item.id)}
+              isTooltipShow={tooltip.text}
             >
+              <RatingWrapper onMouseLeave={ratingHoverOff}>
+                {ratingConfig.map(({ id, img }, index) => (
+                  <ItemRatingImg
+                    key={id}
+                    starPoint={index}
+                    data-point={index}
+                    dishPoint={
+                      pointsRating.length > 0 ? pointsRating[0].points : 0
+                    }
+                    onMouseEnter={ratingHoverOn(index)}
+                    onClick={handleSendRating(item)}
+                    src={img}
+                    alt="rating-img"
+                  />
+                ))}
+                <TooltipContainer delTooltipAnim={delTooltipAnim}>
+                  <Tooltip>{tooltip.text}</Tooltip>
+                </TooltipContainer>
+              </RatingWrapper>
               <ItemImg src={item.img} alt={`${item.title}_img`} />
               <ItemContentWrapper>
                 <ItemContentTitle>{item.title}</ItemContentTitle>
@@ -68,8 +211,8 @@ const DishesItems = () => {
                 />
               </ItemContentWrapper>
             </ItemWrapper>
-          )
-        )}
+          );
+        })}
       </ItemsFlexContainer>
     </ItemsContainer>
   );
@@ -90,6 +233,63 @@ const Title = styled.h2`
 `;
 
 const SettingsImg = styled.img``;
+
+const TooltipContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  left: -170px;
+  width: 150px;
+  text-align: center;
+  z-index: 1;
+  background-color: #2d9cdb;
+  border-radius: 10px;
+  animation-name: ${({ delTooltipAnim }) =>
+    delTooltipAnim ? "delTooltip" : "showTooltip"};
+  animation-duration: 800ms;
+  transition-timing-function: ease-in-out;
+  display: none;
+
+  @keyframes showTooltip {
+    0% {
+      transform: translateX(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes delTooltip {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(10px);
+      opacity: 0;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    right: -4px;
+    top: 18%;
+    width: 10px;
+    height: 10px;
+    background-color: #2d9cdb;
+    transform: rotate(45deg);
+  }
+`;
+
+const Tooltip = styled.p`
+  font-size: 12px;
+  padding: 8px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 15px;
+`;
 
 const ItemsFlexContainer = styled.div`
   display: flex;
@@ -130,15 +330,15 @@ const ItemsFlexContainer = styled.div`
 `;
 
 const ItemWrapper = styled.div`
-  padding-top: ${(props) => (props.activeCard ? "85px" : "90px")};
+  padding-top: ${({ activeCard }) => (activeCard ? "85px" : "90px")};
   max-width: 206px;
   position: relative;
   margin-bottom: 15px;
   -webkit-tap-highlight-color: transparent;
   transition: all 420ms linear;
 
-  ${(props) =>
-    props.activeCard &&
+  ${({ activeCard }) =>
+    activeCard &&
     `
     ${ItemContentWrapper}{
       background-color: #F2EEEE;
@@ -156,7 +356,41 @@ const ItemWrapper = styled.div`
 
   @media (max-width: 580px) {
     max-width: 190px;
-    padding-top: ${(props) => (props.activeCard ? "65px" : "70px")};
+    padding-top: ${({ activeCard }) => (activeCard ? "65px" : "70px")};
+  }
+`;
+
+const RatingWrapper = styled.div`
+  top: 5px;
+  right: 5px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+
+  @media (max-width: 580px) {
+    top: -3px;
+  }
+`;
+
+const ItemRatingImg = styled.img`
+  filter: ${({ starPoint, dishPoint }) =>
+    starPoint < dishPoint ? "grayscale(0%)" : "grayscale(100%)"};
+  width: 14px;
+  transition: all 400ms linear;
+  margin-bottom: 2px;
+
+  &:hover {
+    transform: scale(1.3, 1.3);
+    transition: all 400ms linear;
+
+    @media (max-width: 580px) {
+      transform: scale(1.2, 1.2);
+    }
+  }
+
+  @media (max-width: 580px) {
+    margin-bottom: 1px;
   }
 `;
 

@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { activeGroupReducer } from "./activeGroupReducer";
+import { configsReducer } from "./configsReducer";
 import { authReducer } from "./authReducer";
 import { loaderReducer } from "./loaderReducer";
 import { showOrHideBasketReducer } from "./showOrHideBasketReducer";
@@ -9,6 +10,7 @@ import { searchProcessingReducer } from "./searchProcessingReduser";
 
 export const rootReducer = combineReducers({
   activeDishGroup: activeGroupReducer,
+  configItems: configsReducer,
   currentAuthUser: authReducer,
   loader: loaderReducer,
   isBasketShow: showOrHideBasketReducer,

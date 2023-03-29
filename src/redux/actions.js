@@ -1,4 +1,5 @@
 import { SELECT_GROUP } from "./types";
+import { GET_DISHES_ITEMS_CONFIG } from "./types";
 import { REGISTER_USER } from "./types";
 import { AUTH_ERROR } from "./types";
 import { LOGIN_USER } from "./types";
@@ -19,7 +20,10 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import app from "../base";
+import { child, get } from "firebase/database";
+import { dbRef } from "../base";
+import { app } from "../base";
+import { async } from "@firebase/util";
 
 const auth = getAuth();
 
@@ -83,6 +87,26 @@ export const selectGroup = (groupName) => {
   return {
     type: SELECT_GROUP,
     payload: groupName,
+  };
+};
+
+export const getDishesItemsConfig = () => {
+  return (dispatch) => {
+    get(child(dbRef, `/dishesConfig`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          let dishesItemsConfig = snapshot.val();
+          dispatch({
+            type: GET_DISHES_ITEMS_CONFIG,
+            payload: dishesItemsConfig,
+          });
+        } else {
+          console.log("No data available"); //must be modal message
+        }
+      })
+      .catch((error) => {
+        console.error(error); //must be modal message
+      });
   };
 };
 

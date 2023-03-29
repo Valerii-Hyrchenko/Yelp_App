@@ -31,7 +31,6 @@ export const BasketProcessing = () => {
 
   const handleMakeOrder = () => {
     if (selectedDishes.length > 0) {
-      console.log("dataToSendingOrder :>> ", selectedDishes);
       setIsOrderComplete((prev) => !prev);
     } else return;
   };
@@ -85,7 +84,7 @@ export const BasketProcessing = () => {
                     <EnterQuantity
                       onChange={handleChangeDishQuantity(item)}
                       type="number"
-                      value={item.quantity}
+                      value={+item.quantity}
                       autoComplete="off"
                     />
                   </QuantityOfItem>
