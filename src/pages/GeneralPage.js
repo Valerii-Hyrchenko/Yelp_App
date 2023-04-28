@@ -1,6 +1,6 @@
 import { Home } from "../Components/GeneralUI/GeneralPageParts/Home";
 import { Menu } from "../Components/GeneralUI/GeneralPageParts/Menu";
-import { Settings } from "../Components/GeneralUI/GeneralPageParts/Settings";
+import Settings from "../Components/GeneralUI/GeneralPageParts/Settings";
 import { Trending } from "../Components/GeneralUI/GeneralPageParts/Trending";
 import { LeftBarMenu } from "../Components/GeneralUI/GeneralPageParts/LeftBarMenu";
 import styled from "styled-components";
