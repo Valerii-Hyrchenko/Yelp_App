@@ -2,11 +2,9 @@ import { Button } from "./Button";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import { loginPageConfig } from "../allConfigsConst";
-import { registerPageConfig } from "../allConfigsConst";
+import { loginPageConfig, registerPageConfig } from "../allConfigsConst";
 import { useFormik } from "formik";
-import { registerUser } from "../../redux/actions";
-import { loginUser } from "../../redux/actions";
+import { registerUser, loginUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useNav } from "../../hooks/useNav";
 import { ModalMessages } from "./ModalMessages";
@@ -28,7 +26,7 @@ export const Form = ({ pageType }) => {
           password: "",
           confirmPassword: "",
         };
-  let getCurrentDispatch = () =>
+  const getCurrentDispatch = () =>
     pageType === "login" ? loginUser(values) : registerUser(values);
 
   const dispatch = useDispatch();
@@ -99,6 +97,46 @@ const linkStyle = {
   textAlign: "center",
   paddingTop: "10px",
 };
+
+const PASS_REGEX = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+const NAME_YUP_SETTING = Yup.string()
+  .required("Please, enter name")
+  .trim()
+  .email();
+
+const LOGIN_YUP_SETTING = Yup.string()
+  .required("Please, enter login")
+  .trim()
+  .email();
+
+const PASS_YUP_SETTING = Yup.string()
+  .required("Please, enter password")
+  .trim()
+  .matches(
+    PASS_REGEX,
+    "Password must be minimum eight characters, at least one letter and one number"
+  );
+
+const CONFIRM_PASS_YUP_SETTING = Yup.string()
+  .required("Please, confirm password")
+  .trim()
+  .matches(
+    PASS_REGEX,
+    "Password must be minimum eight characters, at least one letter and one number"
+  )
+  .oneOf([Yup.ref("password")], "Your password do not match 'password' field");
+
+const loginScheme = Yup.object({
+  login: LOGIN_YUP_SETTING,
+  password: PASS_YUP_SETTING,
+});
+
+const registerScheme = Yup.object().shape({
+  name: NAME_YUP_SETTING,
+  password: PASS_YUP_SETTING,
+  confirmPassword: CONFIRM_PASS_YUP_SETTING,
+});
 
 const FormWrapper = styled.div`
   padding: 77px 95px 55px;
@@ -235,43 +273,3 @@ const ErrorMessage = styled.p`
   font-size: 10px;
   font-weight: 700;
 `;
-
-const PASS_REGEX = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-const NAME_YUP_SETTING = Yup.string()
-  .required("Please, enter name")
-  .trim()
-  .email();
-
-const LOGIN_YUP_SETTING = Yup.string()
-  .required("Please, enter login")
-  .trim()
-  .email();
-
-const PASS_YUP_SETTING = Yup.string()
-  .required("Please, enter password")
-  .trim()
-  .matches(
-    PASS_REGEX,
-    "Password must be minimum eight characters, at least one letter and one number"
-  );
-
-const CONFIRM_PASS_YUP_SETTING = Yup.string()
-  .required("Please, confirm password")
-  .trim()
-  .matches(
-    PASS_REGEX,
-    "Password must be minimum eight characters, at least one letter and one number"
-  )
-  .oneOf([Yup.ref("password")], "Your password do not match 'password' field");
-
-const loginScheme = Yup.object({
-  login: LOGIN_YUP_SETTING,
-  password: PASS_YUP_SETTING,
-});
-
-const registerScheme = Yup.object().shape({
-  name: NAME_YUP_SETTING,
-  password: PASS_YUP_SETTING,
-  confirmPassword: CONFIRM_PASS_YUP_SETTING,
-});

@@ -1,4 +1,5 @@
 import { SELECT_GROUP } from "./types";
+import { SELECT_LEFT_BAR_MENU_POSITION } from "./types";
 import { GET_DISHES_ITEMS_CONFIG } from "./types";
 import { REGISTER_USER } from "./types";
 import { AUTH_ERROR } from "./types";
@@ -23,7 +24,6 @@ import {
 import { child, get } from "firebase/database";
 import { dbRef } from "../base";
 import { app } from "../base";
-import { async } from "@firebase/util";
 
 const auth = getAuth();
 
@@ -90,6 +90,13 @@ export const selectGroup = (groupName) => {
   };
 };
 
+export const selectActiveMenuPosition = (menuItem) => {
+  return {
+    type: SELECT_LEFT_BAR_MENU_POSITION,
+    payload: menuItem,
+  };
+};
+
 export const getDishesItemsConfig = () => {
   return (dispatch) => {
     get(child(dbRef, `/dishesConfig`))
@@ -101,11 +108,11 @@ export const getDishesItemsConfig = () => {
             payload: dishesItemsConfig,
           });
         } else {
-          console.log("No data available"); //must be modal message
+          console.log("No data available");
         }
       })
       .catch((error) => {
-        console.error(error); //must be modal message
+        console.error(error);
       });
   };
 };

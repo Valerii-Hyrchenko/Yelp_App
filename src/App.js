@@ -4,8 +4,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { GeneralPage } from "./pages/GeneralPage";
 import { Loader } from "./Components/LoginOrRegister/Loader";
-import { Navigate, Routes } from "react-router-dom";
-import { Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const App = () => {
@@ -52,7 +51,6 @@ const AppContainer = styled.div`
 
   @media (max-width: 1280px) {
     max-width: 1000px;
-    padding: 40px 45px 40px 35px;
   }
 
   @media (max-width: 1080px) {
@@ -69,18 +67,18 @@ const AppContainer = styled.div`
 
   @media (max-width: 580px) {
     max-width: 390px;
+    padding: 20px 25px;
   }
 
   @media (max-width: 475px) {
     padding: 15px;
-    max-width: 380px;
   }
 
-  @media (max-width: 410px) {
-    max-width: 333px;
+  @media (max-width: 420px) {
+    max-width: 345px;
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 375px) {
     padding: 10px;
     max-width: 300px;
   }

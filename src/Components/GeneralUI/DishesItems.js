@@ -162,7 +162,7 @@ const DishesItems = () => {
   return (
     <ItemsContainer>
       <TitleWrapper>
-        <Title>All Items</Title>
+        <Title>{activeDishGroup} items</Title>
         <SettingsImg src={settingsImg} alt="settings-img" />
       </TitleWrapper>
       <ItemsFlexContainer>
@@ -176,7 +176,7 @@ const DishesItems = () => {
               activeCard={selectedDishes.some((dish) => dish.id === item.id)}
               isTooltipShow={tooltip.text}
             >
-              <RatingWrapper onMouseLeave={ratingHoverOff}>
+              <RatingWrapper onMouseOut={ratingHoverOff}>
                 {ratingConfig.map(({ id, img }, index) => (
                   <ItemRatingImg
                     key={id}
@@ -230,6 +230,7 @@ const Title = styled.h2`
   font-size: 24px;
   line-height: 27px;
   margin-right: 30px;
+  text-transform: capitalize;
 `;
 
 const SettingsImg = styled.img``;
@@ -324,8 +325,12 @@ const ItemsFlexContainer = styled.div`
     margin-bottom: 20px;
   }
 
-  @media (max-width: 410px) {
+  @media (max-width: 420px) {
     max-width: 290px;
+  }
+
+  @media (max-width: 375px) {
+    max-width: 260px;
   }
 `;
 

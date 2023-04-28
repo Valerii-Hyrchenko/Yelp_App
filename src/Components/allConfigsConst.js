@@ -10,6 +10,10 @@ import salads from "../assets/img/menu_dishes/salad.png";
 import donut from "../assets/img/menu_dishes/donut.png";
 import drinks from "../assets/img/menu_dishes/drinks.png";
 
+import burgerWanted from "../assets/img/trending/burger_wanted_trending.avif";
+import doubleOliver from "../assets/img/trending/double_oliver_trending.avif";
+import fishburger from "../assets/img/trending/fishburger.avif";
+
 import chickenIcon from "../assets/icons/mini_icons/mini_chicken.png";
 import coronaIcon from "../assets/icons/mini_icons/emoji_corona.png";
 import cookieIcon from "../assets/icons/mini_icons/mini_cookie.png";
@@ -137,4 +141,73 @@ export const ratingConfig = [
   { id: id++, img: star },
   { id: id++, img: star },
   { id: id++, img: star },
+];
+
+export const profileInputsConfig = [
+  {
+    id: id++,
+    name: "name",
+    type: "text",
+    label: "user's first name",
+    placeholder: "enter your name",
+  },
+  {
+    id: id++,
+    name: "surname",
+    type: "text",
+    label: "user's last name",
+    placeholder: "enter your surname",
+  },
+  {
+    id: id++,
+    name: "age",
+    type: "text",
+    label: "user's age",
+    placeholder: "enter your age",
+  },
+  {
+    id: id++,
+    name: "deliveryAddress",
+    type: "text",
+    label: "delivery address",
+    placeholder: "enter your address",
+  },
+  {
+    id: id++,
+    name: "phoneNumber",
+    type: "text",
+    label: "phone number",
+    placeholder: "enter your phone number",
+  },
+  {
+    id: id++,
+    name: "email",
+    type: "text",
+    label: "email for delivery orders",
+    placeholder: "enter your email",
+  },
+];
+
+export const trendingConfig = [
+  {
+    id: id++,
+    img: burgerWanted,
+    name: "Burger Wanted",
+    description:
+      "A huckleberry-crusted burger covered in white cheddar cheese and stacked with shaved brisket on a potato roll with bread & butter pickles, shredded lettuce, sliced tomato, red onion jam.",
+  },
+  {
+    id: id++,
+    img: doubleOliver,
+    name: "Double Oliver",
+    description:
+      "Hand-pressed adobo-seasoned ground chuck and chorizo patty with house-made roasted pepper mayonnaise, chipotle jack cheese, and sauteed peppers on potato roll.",
+  },
+  {
+    id: id++,
+    img: fishburger,
+    name: "Fishburger",
+    description:
+      "Tangy salmon Blue Cheese spread on a steak-burger patty with caramelized onion compote, butter lettuce, Balsamic Vinaigrette, on a French Roll.",
+  },
 ];

@@ -7,7 +7,6 @@ import {
   firstTimeHideBasket,
   updateBasket,
 } from "../../redux/actions";
-import { dishesConfig } from "../allConfigsConst";
 
 export const SearchProcessing = ({ isSearchDeleted }) => {
   const [timerId, setTimerId] = useState("");
@@ -155,7 +154,7 @@ const SearchProcessingWrapper = styled.div`
     top: 48px;
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 375px) {
     left: -234px;
   }
 `;
@@ -192,7 +191,7 @@ const SearchResultWrapper = styled.div`
     max-width: 245px;
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 375px) {
     max-width: 224px;
   }
 `;
@@ -288,7 +287,7 @@ const SearchButton = styled.button`
     transition: 400ms all linear;
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 375px) {
     font-size: 12px;
   }
 `;
@@ -318,7 +317,7 @@ const SearchInput = styled.input`
     font-size: 15px;
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 375px) {
     padding: 12px 95px 11px 10px;
     width: 265px;
   }

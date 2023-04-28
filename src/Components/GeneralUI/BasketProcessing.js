@@ -139,6 +139,11 @@ const BasketProcessingContainer = styled.div`
       opacity: 1;
     }
   }
+
+  @media (max-width: 375px) {
+    width: 270px;
+    margin-left: 15px;
+  }
 `;
 
 const ProcessingWrapper = styled.div``;

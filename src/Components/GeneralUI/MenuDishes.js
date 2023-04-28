@@ -42,12 +42,9 @@ const MenuDishesWrapper = styled.div`
     flex-wrap: wrap;
     height: 180px;
   }
-  @media (max-width: 410px) {
-    margin: 18px 0 32px;
-  }
 
-  @media (max-width: 360px) {
-    max-width: 278px;
+  @media (max-width: 375px) {
+    max-width: 260px;
   }
 `;
 
@@ -80,6 +77,10 @@ const DishContainer = styled.div`
     width: 130px;
   }
 
+  @media (max-width: 375px) {
+    width: 125px;
+  }
+
   ${(props) =>
     props.active &&
     `
@@ -87,6 +88,10 @@ const DishContainer = styled.div`
       color: #000000;
       font-size: 18px;
       transition: all 200ms linear;
+
+      @media (max-width: 580px) {
+        font-size: 16px;
+      }
     }
   `}
 `;

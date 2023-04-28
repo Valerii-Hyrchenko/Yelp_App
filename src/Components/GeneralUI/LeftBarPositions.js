@@ -1,11 +1,22 @@
-import { useState, memo } from "react";
+import { memo } from "react";
 import styled from "styled-components";
 import { menuConfig } from "../allConfigsConst";
+import { useDispatch, useSelector } from "react-redux";
+import { selectActiveMenuPosition } from "../../redux/actions";
 
-const Menu = () => {
-  const [activeItem, setActiveItem] = useState(menuConfig[0]);
+const LeftBarPositions = ({
+  isBurgerCheckboxChecked,
+  setIsBurgerCheckboxChecked,
+}) => {
+  const dispatch = useDispatch();
+  const activeLeftBarPosition = useSelector(
+    (state) => state.activeLeftBarPosition.activeLeftBarPosition
+  );
 
-  const changeActiveItem = (item) => setActiveItem(item);
+  const changeActiveItem = (item) => {
+    dispatch(selectActiveMenuPosition(item));
+    if (isBurgerCheckboxChecked) setIsBurgerCheckboxChecked(false);
+  };
 
   return (
     <MenuWrapper>
@@ -15,7 +26,7 @@ const Menu = () => {
             <Item
               key={item.id}
               onClick={() => changeActiveItem(item)}
-              active={item.id === activeItem.id}
+              active={item.id === activeLeftBarPosition.id}
             >
               <IconWrap>
                 <Icon src={item.img} alt={`${item.title}-icon`} />
@@ -117,4 +128,4 @@ const Icon = styled.img`
   transition: all 200ms linear;
 `;
 
-export default memo(Menu);
+export default memo(LeftBarPositions);

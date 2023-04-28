@@ -38,14 +38,10 @@ const TitleUI = styled.h1`
     line-height: 30px;
   }
 
-  @media (max-width: 410px) {
+  @media (max-width: 375px) {
+    max-width: 190px;
     font-size: 25px;
     line-height: 28px;
-    margin-left: 15px;
-  }
-
-  @media (max-width: 360px) {
-    max-width: 190px;
     margin-left: 10px;
   }
 `;

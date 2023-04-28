@@ -87,7 +87,7 @@ const BasketFlexContainer = styled.div`
   justify-content: flex-end;
   position: relative;
 
-  @media (max-width: 410px) {
+  @media (max-width: 420px) {
     flex-direction: column-reverse;
   }
 `;
@@ -181,7 +181,7 @@ const BasketImgWrapper = styled.div`
     max-height: 14px;
   }
 
-  @media (max-width: 410px) {
+  @media (max-width: 420px) {
     margin: 0 10px 10px 0;
   }
 `;
