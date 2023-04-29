@@ -14,21 +14,23 @@ const App = () => {
   );
 
   return (
-    <AppContainer>
-      {loading ? (
-        <Loader />
-      ) : (
-        <Routes>
-          <Route path="/" element={<GeneralPage />} />
-          <Route
-            path="/login"
-            element={currentAuthUser ? <Navigate to="/" /> : <LoginPage />}
-          />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      )}
-    </AppContainer>
+    <Background>
+      <AppContainer>
+        {loading ? (
+          <Loader />
+        ) : (
+          <Routes>
+            <Route path="/" element={<GeneralPage />} />
+            <Route
+              path="/login"
+              element={currentAuthUser ? <Navigate to="/" /> : <LoginPage />}
+            />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        )}
+      </AppContainer>
+    </Background>
   );
 };
 
@@ -82,4 +84,8 @@ const AppContainer = styled.div`
     padding: 10px;
     max-width: 300px;
   }
+`;
+
+const Background = styled.div`
+  background-color: rgb(250, 250, 250);
 `;
