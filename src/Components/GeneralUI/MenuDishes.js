@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import { useState, memo } from "react";
-import { useDispatch } from "react-redux";
+import { memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { selectGroup } from "../../redux/actions";
 import { menuDishesConfig } from "../allConfigsConst";
 
 const MenuDishes = () => {
-  const [activeDishGroup, setActiveDishGroup] = useState(menuDishesConfig[0]);
+  const {
+    activeDishGroup: { activeDishGroup },
+  } = useSelector((state) => state);
   const dispatch = useDispatch();
   const handleChangeActiveDish = (item) => {
-    setActiveDishGroup(item);
-    dispatch(selectGroup(item.title));
+    dispatch(selectGroup(item));
   };
   return (
     <MenuDishesWrapper>

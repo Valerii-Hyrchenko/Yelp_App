@@ -6,15 +6,23 @@ import { ScrollToTopButton } from "../ScrollToTopButton";
 import { Promotion } from "../Promotion";
 import { News } from "../News";
 import { PopupNewsBtn } from "../PopupNewsBtn";
+import { getDishesItemsConfig } from "../../../redux/actions";
 import { useState } from "react";
 import styled from "styled-components";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 export const Menu = () => {
   const [isNewsCheckboxChecked, setIsNewsCheckboxChecked] = useState(false);
-
+  const dispatch = useDispatch();
   const handleNewsSwitcher = () => setIsNewsCheckboxChecked((prev) => !prev);
+
+  useEffect(() => {
+    dispatch(getDishesItemsConfig());
+  }, []);
+
   return (
-    <>
+    <MenuWrapper>
       <MenuDishesContainer>
         <TitleDishesWrapper>
           <Title />
@@ -43,9 +51,28 @@ export const Menu = () => {
           <News />
         </PromotionContainer>
       </PromotionWrapper>
-    </>
+    </MenuWrapper>
   );
 };
+
+const MenuWrapper = styled.div`
+  animation-name: "showMenuSection";
+  animation-duration: 700ms;
+  transition-timing-function: linear;
+  display: flex;
+  justify-content: space-between;
+
+  @keyframes showMenuSection {
+    0% {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
 
 const TitleDishesWrapper = styled.div`
   display: flex;

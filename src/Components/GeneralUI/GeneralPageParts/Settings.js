@@ -44,6 +44,21 @@ export default memo(Settings);
 
 const SettingsContainer = styled.div`
   width: 1005px;
+  animation-name: "showSettings";
+  animation-duration: 800ms;
+  transition-timing-function: linear;
+
+  @keyframes showSettings {
+    0% {
+      opacity: 0;
+      transform: translateX(200px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 
   @media (max-width: 1410px) {
     width: 885px;

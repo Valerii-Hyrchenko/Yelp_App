@@ -52,9 +52,6 @@ const GeneralPageFlexWrapper = styled.div`
 `;
 
 const GeneralUIContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 1120px;
   border-radius: 40px;
   background-color: #fff;
   padding: 50px 55px 21px 60px;
@@ -65,20 +62,10 @@ const GeneralUIContainer = styled.div`
   }
 
   @media (max-width: 580px) {
-    max-width: 340px;
     padding: 50px 25px 21px 25px;
   }
 
   @media (max-width: 420px) {
-    padding: 50px 25px 21px 35px;
-  }
-
-  @media (max-width: 420px) {
-    max-width: 305px;
     padding: 40px 20px 20px;
-  }
-
-  @media (max-width: 375px) {
-    max-width: 260px;
   }
 `;

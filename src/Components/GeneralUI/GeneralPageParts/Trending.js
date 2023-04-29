@@ -5,13 +5,15 @@ import trendsBurger from "../../../assets/img/trending/burgers_trends.webp";
 export const Trending = () => {
   return (
     <TrendingPageWrapper>
-      <TrendingTitle>
-        3 BURGER TRENDS TO POWER YOUR NEXT SIGNATURE DISH
-      </TrendingTitle>
-      <TrendsImgWrap>
-        <TrendsImg src={trendsBurger} alt="trends_img" />
-      </TrendsImgWrap>
-      <BurgersTitle>INSPIRATION BY BURGERS</BurgersTitle>
+      <TrendingTitlesWrap>
+        <TrendingTitle>
+          3 BURGER TRENDS TO POWER YOUR NEXT SIGNATURE DISH
+        </TrendingTitle>
+        <TrendsImgWrap>
+          <TrendsImg src={trendsBurger} alt="trends_img" />
+        </TrendsImgWrap>
+        <BurgersTitle>INSPIRATION BY BURGERS</BurgersTitle>
+      </TrendingTitlesWrap>
       <BurgersFlexWrapper>
         {trendingConfig.map(({ id, img, name, description }) => (
           <BurgersItemWrap key={id}>
@@ -60,6 +62,24 @@ const TrendingPageWrapper = styled.div`
   }
 `;
 
+const TrendingTitlesWrap = styled.div`
+  animation-name: "showTrendingTitle";
+  animation-duration: 800ms;
+  transition-timing-function: linear;
+
+  @keyframes showTrendingTitle {
+    0% {
+      opacity: 0;
+      transform: translateY(-200px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
 const TrendingTitle = styled.h2`
   font-size: 28px;
   font-weight: 900;
@@ -78,6 +98,7 @@ const TrendingTitle = styled.h2`
 
 const TrendsImgWrap = styled.div`
   width: 65%;
+  height: 100%;
   margin: 0 auto;
   border-radius: 15px;
 
@@ -100,6 +121,21 @@ const BurgersFlexWrapper = styled.div`
   justify-content: space-between;
   border-left: 15px solid #2d9cdb;
   padding-left: 40px;
+  animation-name: "showTrendingBurgers";
+  animation-duration: 800ms;
+  transition-timing-function: linear;
+
+  @keyframes showTrendingBurgers {
+    0% {
+      opacity: 0;
+      transform: translateY(200px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   @media (max-width: 1410px) {
     flex-wrap: wrap;

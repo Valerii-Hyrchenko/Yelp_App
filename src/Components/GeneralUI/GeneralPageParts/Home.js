@@ -145,20 +145,39 @@ const HomeContainer = styled.div`
 `;
 
 const StyledSlider = styled(Slider)`
+  animation-name: "showSlider";
+  animation-duration: 800ms;
+  transition-timing-function: linear;
+
+  @keyframes showSlider {
+    0% {
+      opacity: 0;
+      transform: translateY(-200px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   .slick-list {
     width: 920px !important;
+    height: 300px !important;
 
     @media (max-width: 1410px) {
       width: 825px !important;
+      height: 267px !important;
     }
 
     @media (max-width: 1280px) {
       width: 450px !important;
+      height: 300px !important;
     }
 
     @media (max-width: 740px) {
       width: 350px !important;
       margin-left: -15px;
+      height: 234px !important;
     }
 
     @media (max-width: 580px) {
@@ -167,10 +186,12 @@ const StyledSlider = styled(Slider)`
 
     @media (max-width: 420px) {
       width: 300px !important;
+      height: 200px !important;
     }
 
     @media (max-width: 375px) {
       width: 280px !important;
+      height: 187px !important;
     }
   }
   .slick-dots {
@@ -193,7 +214,15 @@ const StyledSlider = styled(Slider)`
     height: 40px;
     transform: rotate(180deg);
     right: -48px;
-    top: 132px;
+    top: 130px;
+
+    @media (max-width: 1410px) {
+      top: 115px;
+    }
+
+    @media (max-width: 1280px) {
+      top: 130px;
+    }
 
     @media (max-width: 740px) {
       top: 100px;
@@ -242,6 +271,20 @@ const SlideImg = styled.img`
 
 const CafeDescriptionWrapper = styled.div`
   margin-top: 80px;
+  animation-name: "showDescription";
+  animation-duration: 800ms;
+  transition-timing-function: linear;
+
+  @keyframes showDescription {
+    0% {
+      opacity: 0;
+      transform: translateY(200px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const RestaurantTitle = styled.h2`
@@ -252,6 +295,12 @@ const RestaurantTitle = styled.h2`
 
   @media (max-width: 580px) {
     font-size: 30px;
+  }
+
+  @media (max-width: 420px) {
+    max-width: 240px;
+    margin: 0 auto 40px;
+    text-align: center;
   }
 `;
 

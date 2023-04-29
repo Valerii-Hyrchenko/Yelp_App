@@ -6,7 +6,6 @@ import {
   showBasket,
   updateBasket,
   firstTimeShowBasket,
-  getDishesItemsConfig,
 } from "../../redux/actions";
 import { database } from "../../base";
 import { ratingConfig } from "../allConfigsConst";
@@ -20,6 +19,7 @@ const DishesItems = () => {
   const [delTooltipAnim, setDelTooltipAnim] = useState(false);
   const [activeTooltip, setActiveTooltip] = useState(null);
   const [timeoutsId, setTimeoutsId] = useState([]);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const dispatch = useDispatch();
   const {
@@ -132,8 +132,8 @@ const DishesItems = () => {
     let arrToRender = [];
     const getCurrentObj = () => {
       for (let group in dishesItemsConfig) {
-        if (activeDishGroup === "all") return dishesItemsConfig;
-        if (group === activeDishGroup) return dishesItemsConfig[group];
+        if (activeDishGroup.title === "all") return dishesItemsConfig;
+        if (group === activeDishGroup.title) return dishesItemsConfig[group];
       }
     };
     const getCurrentArr = (currentObj) => {
@@ -150,7 +150,6 @@ const DishesItems = () => {
   };
 
   useEffect(() => {
-    dispatch(getDishesItemsConfig());
     getCurrentRatingData();
   }, []);
 
@@ -159,66 +158,77 @@ const DishesItems = () => {
     if (selectedDishes.length === 0) dispatch(firstTimeShowBasket());
   }, [selectedDishes]);
 
+  useEffect(() => {
+    if (Object.keys(dishesItemsConfig).length > 0) setIsDataLoaded(true);
+  }, [dishesItemsConfig]);
+
   return (
-    <ItemsContainer>
+    <>
       <TitleWrapper>
-        <Title>{activeDishGroup} items</Title>
+        <Title>{activeDishGroup.title} items</Title>
         <SettingsImg src={settingsImg} alt="settings-img" />
       </TitleWrapper>
       <ItemsFlexContainer>
-        {getCurrentDishesArr().map((item) => {
-          let pointsRating = dishesRating.filter(
-            (rating) => rating.id === item.id
-          );
-          return (
-            <ItemWrapper
-              key={item.id}
-              activeCard={selectedDishes.some((dish) => dish.id === item.id)}
-              isTooltipShow={tooltip.text}
-            >
-              <RatingWrapper onMouseOut={ratingHoverOff}>
-                {ratingConfig.map(({ id, img }, index) => (
-                  <ItemRatingImg
-                    key={id}
-                    starPoint={index}
-                    data-point={index}
-                    dishPoint={
-                      pointsRating.length > 0 ? pointsRating[0].points : 0
+        {isDataLoaded ? (
+          getCurrentDishesArr().map((item) => {
+            let pointsRating = dishesRating.filter(
+              (rating) => rating.id === item.id
+            );
+            return (
+              <ItemWrapper
+                key={item.id}
+                activeCard={selectedDishes.some((dish) => dish.id === item.id)}
+                isTooltipShow={tooltip.text}
+              >
+                <RatingWrapper onMouseOut={ratingHoverOff}>
+                  {ratingConfig.map(({ id, img }, index) => (
+                    <ItemRatingImg
+                      key={id}
+                      starPoint={index}
+                      data-point={index}
+                      dishPoint={
+                        pointsRating.length > 0 ? pointsRating[0].points : 0
+                      }
+                      onMouseEnter={ratingHoverOn(index)}
+                      onClick={handleSendRating(item)}
+                      src={img}
+                      alt="rating-img"
+                    />
+                  ))}
+                  <TooltipContainer delTooltipAnim={delTooltipAnim}>
+                    <Tooltip>{tooltip.text}</Tooltip>
+                  </TooltipContainer>
+                </RatingWrapper>
+                <ItemImg src={item.img} alt={`${item.title}_img`} />
+                <ItemContentWrapper>
+                  <ItemContentTitle>{item.title}</ItemContentTitle>
+                  <ItemContentText>{item.text}</ItemContentText>
+                  <ItemContentPrice>{`$${item.price}`}</ItemContentPrice>
+                  <AddDish
+                    onClick={() => changeDish(item)}
+                    alt="add_dish_img"
+                    src={
+                      selectedDishes.some((dish) => dish.id === item.id)
+                        ? chosenDishImg
+                        : addDishImg
                     }
-                    onMouseEnter={ratingHoverOn(index)}
-                    onClick={handleSendRating(item)}
-                    src={img}
-                    alt="rating-img"
                   />
-                ))}
-                <TooltipContainer delTooltipAnim={delTooltipAnim}>
-                  <Tooltip>{tooltip.text}</Tooltip>
-                </TooltipContainer>
-              </RatingWrapper>
-              <ItemImg src={item.img} alt={`${item.title}_img`} />
-              <ItemContentWrapper>
-                <ItemContentTitle>{item.title}</ItemContentTitle>
-                <ItemContentText>{item.text}</ItemContentText>
-                <ItemContentPrice>{`$${item.price}`}</ItemContentPrice>
-                <AddDish
-                  onClick={() => changeDish(item)}
-                  alt="add_dish_img"
-                  src={
-                    selectedDishes.some((dish) => dish.id === item.id)
-                      ? chosenDishImg
-                      : addDishImg
-                  }
-                />
-              </ItemContentWrapper>
-            </ItemWrapper>
-          );
-        })}
+                </ItemContentWrapper>
+              </ItemWrapper>
+            );
+          })
+        ) : (
+          <LoaderWrap>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </LoaderWrap>
+        )}
       </ItemsFlexContainer>
-    </ItemsContainer>
+    </>
   );
 };
-
-const ItemsContainer = styled.div``;
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -297,6 +307,20 @@ const ItemsFlexContainer = styled.div`
   flex-wrap: wrap;
   width: 675px;
   justify-content: space-between;
+  animation-name: "showDishes";
+  animation-duration: 700ms;
+  transition-timing-function: linear;
+
+  @keyframes showDishes {
+    0% {
+      transform: translateY(200px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   &::after {
     content: "";
@@ -454,6 +478,86 @@ const AddDish = styled.img`
   right: 9px;
   cursor: pointer;
   transition: all 420ms linear;
+`;
+
+const LoaderWrap = styled.div`
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 10% 0 20% 45%;
+
+  & > div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #2d9cdb;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+
+  & > div:nth-child(1) {
+    left: 8px;
+    animation: preloader1 0.6s infinite;
+  }
+
+  & > div:nth-child(2) {
+    left: 8px;
+    animation: preloader2 0.6s infinite;
+  }
+
+  & > div:nth-child(3) {
+    left: 32px;
+    animation: preloader2 0.6s infinite;
+  }
+
+  & > div:nth-child(4) {
+    left: 56px;
+    animation: preloader3 0.6s infinite;
+  }
+
+  @keyframes preloader1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes preloader2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+
+  @keyframes preloader3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  @media (max-width: 740px) {
+    margin: 10% 0 20% 40%;
+  }
+
+  @media (max-width: 580px) {
+    margin: 10% 0 20% 15%;
+  }
+
+  @media (max-width: 420px) {
+    margin: 10% 0 20% 10%;
+  }
+
+  @media (max-width: 380px) {
+    margin: 10% 0 20% 5%;
+  }
 `;
 
 export default memo(DishesItems);
