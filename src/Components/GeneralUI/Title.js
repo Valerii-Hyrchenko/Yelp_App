@@ -48,14 +48,18 @@ const TitleUI = styled.h1`
 
 const EmojiImg = styled.img`
   margin: 0 0 -18px 4px;
+  width: 62px;
+  height: 66px;
 
   @media (max-width: 740px) {
     width: 55px;
+    height: 58px;
   }
 
   @media (max-width: 580px) {
     margin: 0 0 -12px 4px;
     width: 40px;
+    height: 42px;
   }
 `;
 

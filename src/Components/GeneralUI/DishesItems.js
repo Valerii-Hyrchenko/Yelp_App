@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions";
 import { database } from "../../base";
 import { ratingConfig } from "../allConfigsConst";
-import settingsImg from "../../assets/img/dishes_items/settings-img.svg";
+import dishIconImg from "../../assets/img/dishes_items/dish_icon.svg";
 import addDishImg from "../../assets/img/dishes_items/add_dish.svg";
 import chosenDishImg from "../../assets/img/dishes_items/chosen_dish.svg";
 
@@ -166,7 +166,7 @@ const DishesItems = () => {
     <>
       <TitleWrapper>
         <Title>{activeDishGroup.title} items</Title>
-        <SettingsImg src={settingsImg} alt="settings-img" />
+        <DishIconImg src={dishIconImg} alt="settings-img" />
       </TitleWrapper>
       <ItemsFlexContainer>
         {isDataLoaded ? (
@@ -233,17 +233,22 @@ const DishesItems = () => {
 const TitleWrapper = styled.div`
   display: flex;
   padding-bottom: 15px;
+  align-items: center;
 `;
 
 const Title = styled.h2`
   font-weight: 800;
   font-size: 24px;
   line-height: 27px;
-  margin-right: 30px;
+  margin-right: 15px;
   text-transform: capitalize;
 `;
 
-const SettingsImg = styled.img``;
+const DishIconImg = styled.img`
+  width: 32px;
+  height: 32px;
+  margin-top: -12px;
+`;
 
 const TooltipContainer = styled.div`
   position: absolute;
@@ -406,6 +411,7 @@ const ItemRatingImg = styled.img`
   filter: ${({ starPoint, dishPoint }) =>
     starPoint < dishPoint ? "grayscale(0%)" : "grayscale(100%)"};
   width: 14px;
+  height: 13px;
   transition: all 400ms linear;
   margin-bottom: 2px;
 

@@ -91,8 +91,11 @@ const PopupAnimateElem = styled.div`
 
 const PopupAnimateIcon = styled.img`
   transition: all 250ms linear;
+  width: 46px;
+  height: 46px;
 
   @media (max-width: 740px) {
     width: 35px;
+    height: 35px;
   }
 `;

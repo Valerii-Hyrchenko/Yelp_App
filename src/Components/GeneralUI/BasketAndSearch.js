@@ -61,7 +61,7 @@ const BasketAndSearch = () => {
           isSearchShow={isSearchShow}
           onClick={handleShowSearch}
         >
-          <SearchImg
+          <IconImg
             src={isSearchShow ? closeSearchIcon : searchIcon}
             alt="search-icon"
           />
@@ -73,7 +73,7 @@ const BasketAndSearch = () => {
             <DishesCounter>{selectedDishes.length}</DishesCounter>
           </DishesCounterWrap>
         ) : null}
-        <BasketImg src={basketIcon} alt="basket-icon" />
+        <IconImg src={basketIcon} alt="basket-icon" />
       </BasketImgWrapper>
       <BasketProcessingWrapper>
         {isBasketShow ? <BasketProcessing /> : null}
@@ -159,9 +159,13 @@ const SearchImgWrapper = styled.div`
   }
 `;
 
-const SearchImg = styled.img`
+const IconImg = styled.img`
+  width: 18px;
+  height: 18px;
+
   @media (max-width: 740px) {
     width: 14px;
+    height: 14px;
   }
 `;
 
@@ -183,12 +187,6 @@ const BasketImgWrapper = styled.div`
 
   @media (max-width: 420px) {
     margin: 0 10px 10px 0;
-  }
-`;
-
-const BasketImg = styled.img`
-  @media (max-width: 740px) {
-    width: 14px;
   }
 `;
 
