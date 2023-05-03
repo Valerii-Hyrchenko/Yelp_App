@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Yelp_App/static/css/main.0277fffa.css",
-    "main.js": "/Yelp_App/static/js/main.0470b3bc.js",
+    "main.js": "/Yelp_App/static/js/main.92b37048.js",
     "static/media/burgers_trends.webp": "/Yelp_App/static/media/burgers_trends.04b78ac6f2d57e71db1b.webp",
     "static/media/emoji-title.svg": "/Yelp_App/static/media/emoji-title.67d1a9de5c0dc0698ebcd52a0eb42c3e.svg",
     "static/media/double_oliver_trending.avif": "/Yelp_App/static/media/double_oliver_trending.896d4403e8b36e403f72.avif",
@@ -20,6 +20,7 @@
     "static/media/spartan-latin-ext-400-normal.woff2": "/Yelp_App/static/media/spartan-latin-ext-400-normal.93f14a43648bff9198b3.woff2",
     "static/media/settings.svg": "/Yelp_App/static/media/settings.639693b651229e77e0458212b511ccc0.svg",
     "static/media/avatar.svg": "/Yelp_App/static/media/avatar.aa9018dfad2826598167400384212d66.svg",
+    "static/media/dish_icon.svg": "/Yelp_App/static/media/dish_icon.0619b5f836d5f185b9929c06f568174c.svg",
     "static/media/arrow_prev_next.svg": "/Yelp_App/static/media/arrow_prev_next.e421fe0b3f42afa73723a9aecf5db279.svg",
     "static/media/trending.svg": "/Yelp_App/static/media/trending.f50f13633d5a4d410e9014aecf27604f.svg",
     "static/media/slick.svg": "/Yelp_App/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -39,13 +40,12 @@
     "static/media/search_icon.svg": "/Yelp_App/static/media/search_icon.95faab9b2cd6ae5159edbe6686266bfa.svg",
     "index.html": "/Yelp_App/index.html",
     "static/media/chosen_dish.svg": "/Yelp_App/static/media/chosen_dish.f4e153222e619029dc2d7f9afc69bf6d.svg",
-    "static/media/settings-img.svg": "/Yelp_App/static/media/settings-img.74289f17e0e446e146651dc54ff89813.svg",
     "static/media/add_dish.svg": "/Yelp_App/static/media/add_dish.bd8efbd7e0d849790dfb5b75330aab60.svg",
     "main.0277fffa.css.map": "/Yelp_App/static/css/main.0277fffa.css.map",
-    "main.0470b3bc.js.map": "/Yelp_App/static/js/main.0470b3bc.js.map"
+    "main.92b37048.js.map": "/Yelp_App/static/js/main.92b37048.js.map"
   },
   "entrypoints": [
     "static/css/main.0277fffa.css",
-    "static/js/main.0470b3bc.js"
+    "static/js/main.92b37048.js"
   ]
 }
