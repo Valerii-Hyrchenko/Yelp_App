@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Yelp_App/static/css/main.0277fffa.css",
-    "main.js": "/Yelp_App/static/js/main.b5acdda9.js",
+    "main.js": "/Yelp_App/static/js/main.9b72a232.js",
     "static/media/burgers_trends.webp": "/Yelp_App/static/media/burgers_trends.04b78ac6f2d57e71db1b.webp",
     "static/media/emoji-title.svg": "/Yelp_App/static/media/emoji-title.67d1a9de5c0dc0698ebcd52a0eb42c3e.svg",
     "static/media/double_oliver_trending.avif": "/Yelp_App/static/media/double_oliver_trending.896d4403e8b36e403f72.avif",
@@ -42,10 +42,10 @@
     "static/media/chosen_dish.svg": "/Yelp_App/static/media/chosen_dish.f4e153222e619029dc2d7f9afc69bf6d.svg",
     "static/media/add_dish.svg": "/Yelp_App/static/media/add_dish.bd8efbd7e0d849790dfb5b75330aab60.svg",
     "main.0277fffa.css.map": "/Yelp_App/static/css/main.0277fffa.css.map",
-    "main.b5acdda9.js.map": "/Yelp_App/static/js/main.b5acdda9.js.map"
+    "main.9b72a232.js.map": "/Yelp_App/static/js/main.9b72a232.js.map"
   },
   "entrypoints": [
     "static/css/main.0277fffa.css",
-    "static/js/main.b5acdda9.js"
+    "static/js/main.9b72a232.js"
   ]
 }
