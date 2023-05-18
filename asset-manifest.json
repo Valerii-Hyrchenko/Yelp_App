@@ -1,12 +1,9 @@
 {
   "files": {
     "main.css": "/Yelp_App/static/css/main.0277fffa.css",
-    "main.js": "/Yelp_App/static/js/main.3d996493.js",
-    "static/media/burgers_trends.webp": "/Yelp_App/static/media/burgers_trends.04b78ac6f2d57e71db1b.webp",
+    "main.js": "/Yelp_App/static/js/main.fd909097.js",
     "static/media/emoji-title.svg": "/Yelp_App/static/media/emoji-title.67d1a9de5c0dc0698ebcd52a0eb42c3e.svg",
-    "static/media/burger_wanted_trending.webp": "/Yelp_App/static/media/burger_wanted_trending.424f8e9bf28165eade75.webp",
-    "static/media/double_oliver_trending.webp": "/Yelp_App/static/media/double_oliver_trending.7ffdc1901bdfc60e21a1.webp",
-    "static/media/fishburger.webp": "/Yelp_App/static/media/fishburger.ae92b8f93d5e65456e6e.webp",
+    "static/media/burgers_trends.webp": "/Yelp_App/static/media/burgers_trends.42834bea445ce146d201.webp",
     "static/media/leaf.svg": "/Yelp_App/static/media/leaf.a923d22061e4870e6086988c702ccb80.svg",
     "static/media/grapes.svg": "/Yelp_App/static/media/grapes.300fbbc16a92ea9214cf4bf1fe34c352.svg",
     "static/media/spartan-all-400-normal.woff": "/Yelp_App/static/media/spartan-all-400-normal.a2bb3e328c2e2f3b49cd.woff",
@@ -14,6 +11,9 @@
     "static/media/star.svg": "/Yelp_App/static/media/star.a8f60a817a7833486629146f31987eb2.svg",
     "static/media/red_apple.svg": "/Yelp_App/static/media/red_apple.18cbe82ad1052c47c2dbb9346af2e43e.svg",
     "static/media/spartan-latin-400-normal.woff2": "/Yelp_App/static/media/spartan-latin-400-normal.3882df9c2c9e6d9552ed.woff2",
+    "static/media/burger_wanted_trending.webp": "/Yelp_App/static/media/burger_wanted_trending.458cc068750f18d25be6.webp",
+    "static/media/double_oliver_trending.webp": "/Yelp_App/static/media/double_oliver_trending.4ce84064a894b8f1b4ae.webp",
+    "static/media/fishburger.webp": "/Yelp_App/static/media/fishburger.e0a1dc907bcd3c8f4af8.webp",
     "static/media/spartan-latin-ext-400-normal.woff2": "/Yelp_App/static/media/spartan-latin-ext-400-normal.93f14a43648bff9198b3.woff2",
     "static/media/settings.svg": "/Yelp_App/static/media/settings.639693b651229e77e0458212b511ccc0.svg",
     "static/media/avatar.svg": "/Yelp_App/static/media/avatar.aa9018dfad2826598167400384212d66.svg",
@@ -39,10 +39,10 @@
     "static/media/chosen_dish.svg": "/Yelp_App/static/media/chosen_dish.f4e153222e619029dc2d7f9afc69bf6d.svg",
     "static/media/add_dish.svg": "/Yelp_App/static/media/add_dish.bd8efbd7e0d849790dfb5b75330aab60.svg",
     "main.0277fffa.css.map": "/Yelp_App/static/css/main.0277fffa.css.map",
-    "main.3d996493.js.map": "/Yelp_App/static/js/main.3d996493.js.map"
+    "main.fd909097.js.map": "/Yelp_App/static/js/main.fd909097.js.map"
   },
   "entrypoints": [
     "static/css/main.0277fffa.css",
-    "static/js/main.3d996493.js"
+    "static/js/main.fd909097.js"
   ]
 }
