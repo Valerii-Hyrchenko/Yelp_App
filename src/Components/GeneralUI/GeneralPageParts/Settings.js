@@ -51,7 +51,7 @@ const SettingsContainer = styled.div`
   @keyframes showSettings {
     0% {
       opacity: 0;
-      transform: translateX(200px);
+      transform: translateX(80px);
     }
 
     100% {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, memo, useState } from "react";
+import { useEffect, memo, useState, useRef } from "react";
 import { ref, set, onValue } from "firebase/database";
 import {
   showBasket,
@@ -19,7 +19,9 @@ const DishesItems = () => {
   const [delTooltipAnim, setDelTooltipAnim] = useState(false);
   const [activeTooltip, setActiveTooltip] = useState(null);
   const [timeoutsId, setTimeoutsId] = useState([]);
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [isImgLoaded, setIsImgLoaded] = useState([]);
+  const [dishesArrayToRender, setDishesArrayToRender] = useState([]);
+  const refDishes = useRef([]);
 
   const dispatch = useDispatch();
   const {
@@ -129,13 +131,13 @@ const DishesItems = () => {
   };
 
   const getCurrentDishesArr = () => {
-    let arrToRender = [];
     const getCurrentObj = () => {
       for (let group in dishesItemsConfig) {
         if (activeDishGroup.title === "all") return dishesItemsConfig;
         if (group === activeDishGroup.title) return dishesItemsConfig[group];
       }
     };
+    const arrToRender = [];
     const getCurrentArr = (currentObj) => {
       for (let item in currentObj) {
         if (currentObj[item].id) {
@@ -146,7 +148,8 @@ const DishesItems = () => {
       }
     };
     getCurrentArr(getCurrentObj());
-    return arrToRender;
+    setDishesArrayToRender(arrToRender);
+    refDishes.current = refDishes.current.slice(0, arrToRender.length);
   };
 
   useEffect(() => {
@@ -159,8 +162,37 @@ const DishesItems = () => {
   }, [selectedDishes]);
 
   useEffect(() => {
-    if (Object.keys(dishesItemsConfig).length > 0) setIsDataLoaded(true);
-  }, [dishesItemsConfig]);
+    const hideRenderedItems = (dishesArr) => {
+      dishesArr.forEach((item) => (item.style.display = "none"));
+    };
+    if (Object.keys(dishesItemsConfig).length > 0) {
+      hideRenderedItems(refDishes.current);
+      getCurrentDishesArr();
+    }
+  }, [dishesItemsConfig, activeDishGroup]);
+
+  useEffect(() => {
+    const checkImgLoad = () => {
+      setIsImgLoaded((prev) => [...prev, { loaded: true }]);
+    };
+    refDishes.current.forEach((item) => {
+      item.children[1].addEventListener("load", checkImgLoad);
+      return () => item.children[1].removeEventListener("load", checkImgLoad);
+    });
+  }, [dishesArrayToRender]);
+
+  useEffect(() => {
+    const showItems = (dishesArr) => {
+      dishesArr.forEach((item, index) => {
+        let delay = 150 * index;
+        setTimeout(() => {
+          item.style.display = "block";
+        }, delay);
+      });
+    };
+    if (isImgLoaded.length >= dishesArrayToRender.length)
+      showItems(refDishes.current);
+  }, [isImgLoaded, dishesArrayToRender]);
 
   return (
     <>
@@ -169,8 +201,8 @@ const DishesItems = () => {
         <DishIconImg src={dishIconImg} alt="settings-img" />
       </TitleWrapper>
       <ItemsFlexContainer>
-        {isDataLoaded ? (
-          getCurrentDishesArr().map((item) => {
+        {dishesArrayToRender.length > 0 ? (
+          dishesArrayToRender.map((item) => {
             let pointsRating = dishesRating.filter(
               (rating) => rating.id === item.id
             );
@@ -179,6 +211,7 @@ const DishesItems = () => {
                 key={item.id}
                 activeCard={selectedDishes.some((dish) => dish.id === item.id)}
                 isTooltipShow={tooltip.text}
+                ref={(elem) => (elem ? refDishes.current.push(elem) : null)}
               >
                 <RatingWrapper onMouseOut={ratingHoverOff}>
                   {ratingConfig.map(({ id, img }, index) => (
@@ -338,6 +371,7 @@ const ItemsFlexContainer = styled.div`
 
   @media (max-width: 1280px) {
     width: 675px;
+    min-height: 300px;
   }
 
   @media (max-width: 870px) {
@@ -370,6 +404,10 @@ const ItemWrapper = styled.div`
   margin-bottom: 15px;
   -webkit-tap-highlight-color: transparent;
   transition: all 420ms linear;
+  display: none;
+  animation-name: "showDishItem";
+  animation-duration: 400ms;
+  animation-timing-function: linear;
 
   ${({ activeCard }) =>
     activeCard &&
@@ -387,6 +425,20 @@ const ItemWrapper = styled.div`
       transition: all 420ms linear;
     }
   `}
+
+  @keyframes showDishItem {
+    0% {
+      opacity: 0;
+      filter: blur(20px);
+      transform: scale(0.5);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+    }
+  }
 
   @media (max-width: 580px) {
     max-width: 190px;

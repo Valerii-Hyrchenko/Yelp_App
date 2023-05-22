@@ -10,9 +10,9 @@ import salads from "../assets/img/menu_dishes/salad.png";
 import donut from "../assets/img/menu_dishes/donut.png";
 import drinks from "../assets/img/menu_dishes/drinks.png";
 
-import burgerWanted from "../assets/img/trending/burger_wanted_trending.avif";
-import doubleOliver from "../assets/img/trending/double_oliver_trending.avif";
-import fishburger from "../assets/img/trending/fishburger.avif";
+import burgerWanted from "../assets/img/trending/burger_wanted_trending.webp";
+import doubleOliver from "../assets/img/trending/double_oliver_trending.webp";
+import fishburger from "../assets/img/trending/fishburger.webp";
 
 import chickenIcon from "../assets/icons/mini_icons/mini_chicken.png";
 import coronaIcon from "../assets/icons/mini_icons/emoji_corona.png";

@@ -97,23 +97,43 @@ const TrendingTitle = styled.h2`
 `;
 
 const TrendsImgWrap = styled.div`
-  width: 65%;
-  height: 100%;
-  margin: 0 auto;
-  border-radius: 15px;
-
-  @media (max-width: 870px) {
-    width: 90%;
-  }
-
-  @media (max-width: 580px) {
-    width: 100%;
-  }
+  text-align: center;
 `;
 
 const TrendsImg = styled.img`
-  width: 100%;
+  width: 750px;
+  height: 195px;
   border-radius: 15px;
+
+  @media (max-width: 1280px) {
+    width: 630px;
+    height: 164px;
+  }
+
+  @media (max-width: 870px) {
+    width: 480px;
+    height: 125px;
+  }
+
+  @media (max-width: 740px) {
+    width: 390px;
+    height: 101px;
+  }
+
+  @media (max-width: 580px) {
+    width: 320px;
+    height: 83px;
+  }
+
+  @media (max-width: 420px) {
+    width: 300px;
+    height: 78px;
+  }
+
+  @media (max-width: 375px) {
+    width: 260px;
+    height: 68px;
+  }
 `;
 
 const BurgersFlexWrapper = styled.div`
@@ -177,17 +197,16 @@ const BurgersTitle = styled.h2`
   }
 `;
 
-const BurgerImgWrapper = styled.div`
-  width: 100%;
-
-  @media (max-width: 420px) {
-    width: 85%;
-    margin: 0 auto;
-  }
-`;
+const BurgerImgWrapper = styled.div``;
 
 const BurgerImg = styled.img`
-  width: 100%;
+  width: 280px;
+  height: 186px;
+
+  @media (max-width: 420px) {
+    width: 234px;
+    height: 156px;
+  }
 `;
 
 const BurgerItemText = styled.p`

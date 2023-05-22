@@ -28,6 +28,21 @@ const BurgerMenuBtnWrapper = styled.div`
   box-sizing: border-box;
   display: none;
   z-index: ${(props) => (props.isBurgerCheckboxChecked ? 15 : 5)};
+  animation-name: "showBurgerBtn";
+  animation-duration: 700ms;
+  transition-timing-function: linear;
+  justify-content: space-between;
+
+  @keyframes showBurgerBtn {
+    0% {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   @media (max-width: 1080px) {
     display: block;
