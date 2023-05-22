@@ -16,3 +16,4 @@ export const HIDE_BASKET = "HIDE_BASKET";
 export const CLEAR_BASKET = "CLEAR_BASKET";
 export const SEARCH_RESULT = "SEARCH_RESULT";
 export const CLEAR_SEARCH = "CLEAR_SEARCH";
+export const CHECK_IMG_LOADING = "CHECK_IMG_LOADING";

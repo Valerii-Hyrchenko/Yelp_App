@@ -6,6 +6,7 @@ import {
   showBasket,
   updateBasket,
   firstTimeShowBasket,
+  checkImgLoading,
 } from "../../redux/actions";
 import { database } from "../../base";
 import { ratingConfig } from "../allConfigsConst";
@@ -19,12 +20,12 @@ const DishesItems = () => {
   const [delTooltipAnim, setDelTooltipAnim] = useState(false);
   const [activeTooltip, setActiveTooltip] = useState(null);
   const [timeoutsId, setTimeoutsId] = useState([]);
-  const [isImgLoaded, setIsImgLoaded] = useState([]);
-  const [dishesArrayToRender, setDishesArrayToRender] = useState([]);
+  const [dishesArrToRender, setDishesArrToRender] = useState([]);
   const refDishes = useRef([]);
 
   const dispatch = useDispatch();
   const {
+    isImgLoaded,
     activeDishGroup: { activeDishGroup },
     isFirsTimeBasketShow: { isFirstShow },
     basketProcessing: { selectedDishes },
@@ -148,8 +149,31 @@ const DishesItems = () => {
       }
     };
     getCurrentArr(getCurrentObj());
-    setDishesArrayToRender(arrToRender);
+    setDishesArrToRender(arrToRender);
     refDishes.current = refDishes.current.slice(0, arrToRender.length);
+  };
+
+  const getLoadStatus = () => {
+    const checkImgLoad = () => {
+      dispatch(checkImgLoading());
+    };
+    refDishes.current.forEach((item) => {
+      item.children[1].addEventListener("load", checkImgLoad);
+      return () => item.children[1].removeEventListener("load", checkImgLoad);
+    });
+  };
+
+  const showDishItems = () => {
+    const showItems = (dishesArr) => {
+      dishesArr.forEach((item, index) => {
+        let delay = 150 * index;
+        setTimeout(() => {
+          item.style.display = "block";
+        }, delay);
+      });
+    };
+    if (isImgLoaded.length >= dishesArrToRender.length)
+      showItems(refDishes.current);
   };
 
   useEffect(() => {
@@ -172,27 +196,12 @@ const DishesItems = () => {
   }, [dishesItemsConfig, activeDishGroup]);
 
   useEffect(() => {
-    const checkImgLoad = () => {
-      setIsImgLoaded((prev) => [...prev, { loaded: true }]);
-    };
-    refDishes.current.forEach((item) => {
-      item.children[1].addEventListener("load", checkImgLoad);
-      return () => item.children[1].removeEventListener("load", checkImgLoad);
-    });
-  }, [dishesArrayToRender]);
+    getLoadStatus();
+  }, [dishesArrToRender]);
 
   useEffect(() => {
-    const showItems = (dishesArr) => {
-      dishesArr.forEach((item, index) => {
-        let delay = 150 * index;
-        setTimeout(() => {
-          item.style.display = "block";
-        }, delay);
-      });
-    };
-    if (isImgLoaded.length >= dishesArrayToRender.length)
-      showItems(refDishes.current);
-  }, [isImgLoaded, dishesArrayToRender]);
+    showDishItems();
+  }, [isImgLoaded, dishesArrToRender]);
 
   return (
     <>
@@ -201,8 +210,8 @@ const DishesItems = () => {
         <DishIconImg src={dishIconImg} alt="settings-img" />
       </TitleWrapper>
       <ItemsFlexContainer>
-        {dishesArrayToRender.length > 0 ? (
-          dishesArrayToRender.map((item) => {
+        {dishesArrToRender.length > 0 ? (
+          dishesArrToRender.map((item) => {
             let pointsRating = dishesRating.filter(
               (rating) => rating.id === item.id
             );

@@ -8,10 +8,12 @@ import { firstTimeBasketShowReducer } from "./firstTimeBasketShowReducer";
 import { basketProcessingReducer } from "./basketProcessingReducer";
 import { searchProcessingReducer } from "./searchProcessingReducer";
 import { leftBarPositionReducer } from "./leftBarPositionReducer";
+import { imgLoadingReducer } from "./checkImgLoading";
 
 export const rootReducer = combineReducers({
   activeDishGroup: activeGroupReducer,
   activeLeftBarPosition: leftBarPositionReducer,
+  isImgLoaded: imgLoadingReducer,
   configItems: configsReducer,
   currentAuthUser: authReducer,
   loader: loaderReducer,

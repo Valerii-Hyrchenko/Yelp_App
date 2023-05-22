@@ -2,6 +2,7 @@ import { SELECT_GROUP } from "./types";
 import { SELECT_LEFT_BAR_MENU_POSITION } from "./types";
 import { GET_DISHES_ITEMS_CONFIG } from "./types";
 import { REGISTER_USER } from "./types";
+import { CHECK_IMG_LOADING } from "./types";
 import { AUTH_ERROR } from "./types";
 import { LOGIN_USER } from "./types";
 import { SHOW_LOADER } from "./types";
@@ -94,6 +95,13 @@ export const selectActiveMenuPosition = (menuItem) => {
   return {
     type: SELECT_LEFT_BAR_MENU_POSITION,
     payload: menuItem,
+  };
+};
+
+export const checkImgLoading = () => {
+  return {
+    type: CHECK_IMG_LOADING,
+    payload: true,
   };
 };
 
