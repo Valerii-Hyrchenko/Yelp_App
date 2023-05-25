@@ -98,10 +98,10 @@ export const selectActiveMenuPosition = (menuItem) => {
   };
 };
 
-export const checkImgLoading = () => {
+export const checkImgLoading = (img) => {
   return {
     type: CHECK_IMG_LOADING,
-    payload: true,
+    payload: { isImgLoaded: true, img },
   };
 };
 

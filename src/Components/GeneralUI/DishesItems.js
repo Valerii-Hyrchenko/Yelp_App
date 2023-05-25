@@ -154,8 +154,8 @@ const DishesItems = () => {
   };
 
   const getLoadStatus = () => {
-    const checkImgLoad = () => {
-      dispatch(checkImgLoading());
+    const checkImgLoad = (event) => {
+      dispatch(checkImgLoading(event.target));
     };
     refDishes.current.forEach((item) => {
       item.children[1].addEventListener("load", checkImgLoad);
@@ -166,8 +166,9 @@ const DishesItems = () => {
   const showDishItems = () => {
     const showItems = (dishesArr) => {
       dishesArr.forEach((item, index) => {
-        let delay = 150 * index;
+        let delay = 200 * index;
         setTimeout(() => {
+          item.previousElementSibling.style.display = "none";
           item.style.display = "block";
         }, delay);
       });
@@ -187,7 +188,10 @@ const DishesItems = () => {
 
   useEffect(() => {
     const hideRenderedItems = (dishesArr) => {
-      dishesArr.forEach((item) => (item.style.display = "none"));
+      dishesArr.forEach((item) => {
+        item.previousElementSibling.style.display = "block";
+        item.style.display = "none";
+      });
     };
     if (Object.keys(dishesItemsConfig).length > 0) {
       hideRenderedItems(refDishes.current);
@@ -216,46 +220,52 @@ const DishesItems = () => {
               (rating) => rating.id === item.id
             );
             return (
-              <ItemWrapper
-                key={item.id}
-                activeCard={selectedDishes.some((dish) => dish.id === item.id)}
-                isTooltipShow={tooltip.text}
-                ref={(elem) => (elem ? refDishes.current.push(elem) : null)}
-              >
-                <RatingWrapper onMouseOut={ratingHoverOff}>
-                  {ratingConfig.map(({ id, img }, index) => (
-                    <ItemRatingImg
-                      key={id}
-                      starPoint={index}
-                      data-point={index}
-                      dishPoint={
-                        pointsRating.length > 0 ? pointsRating[0].points : 0
+              <ItemWrapper key={item.id}>
+                <ItemSkeleton>
+                  <ItemSkeletonPart />
+                </ItemSkeleton>
+                <ItemContainer
+                  activeCard={selectedDishes.some(
+                    (dish) => dish.id === item.id
+                  )}
+                  isTooltipShow={tooltip.text}
+                  ref={(elem) => (elem ? refDishes.current.push(elem) : null)}
+                >
+                  <RatingWrapper onMouseOut={ratingHoverOff}>
+                    {ratingConfig.map(({ id, img }, index) => (
+                      <ItemRatingImg
+                        key={id}
+                        starPoint={index}
+                        data-point={index}
+                        dishPoint={
+                          pointsRating.length > 0 ? pointsRating[0].points : 0
+                        }
+                        onMouseEnter={ratingHoverOn(index)}
+                        onClick={handleSendRating(item)}
+                        src={img}
+                        alt="rating-img"
+                      />
+                    ))}
+                    <TooltipContainer delTooltipAnim={delTooltipAnim}>
+                      <Tooltip>{tooltip.text}</Tooltip>
+                    </TooltipContainer>
+                  </RatingWrapper>
+                  <ItemImg src={item.img} alt={`${item.title}_img`} />
+                  <ItemContentWrapper>
+                    <ItemContentTitle>{item.title}</ItemContentTitle>
+                    <ItemContentText>{item.text}</ItemContentText>
+                    <ItemContentPrice>{`$${item.price}`}</ItemContentPrice>
+                    <AddDish
+                      onClick={() => changeDish(item)}
+                      alt="add_dish_img"
+                      src={
+                        selectedDishes.some((dish) => dish.id === item.id)
+                          ? chosenDishImg
+                          : addDishImg
                       }
-                      onMouseEnter={ratingHoverOn(index)}
-                      onClick={handleSendRating(item)}
-                      src={img}
-                      alt="rating-img"
                     />
-                  ))}
-                  <TooltipContainer delTooltipAnim={delTooltipAnim}>
-                    <Tooltip>{tooltip.text}</Tooltip>
-                  </TooltipContainer>
-                </RatingWrapper>
-                <ItemImg src={item.img} alt={`${item.title}_img`} />
-                <ItemContentWrapper>
-                  <ItemContentTitle>{item.title}</ItemContentTitle>
-                  <ItemContentText>{item.text}</ItemContentText>
-                  <ItemContentPrice>{`$${item.price}`}</ItemContentPrice>
-                  <AddDish
-                    onClick={() => changeDish(item)}
-                    alt="add_dish_img"
-                    src={
-                      selectedDishes.some((dish) => dish.id === item.id)
-                        ? chosenDishImg
-                        : addDishImg
-                    }
-                  />
-                </ItemContentWrapper>
+                  </ItemContentWrapper>
+                </ItemContainer>
               </ItemWrapper>
             );
           })
@@ -407,8 +417,102 @@ const ItemsFlexContainer = styled.div`
 `;
 
 const ItemWrapper = styled.div`
+  width: 206px;
+
+  @media (max-width: 580px) {
+    width: 190px;
+  }
+`;
+
+const ItemSkeleton = styled.div`
+  min-width: 206px;
+  min-height: 284px;
+  position: relative;
+  margin-bottom: 15px;
+  animation: 2s linear infinite;
+  animation-name: "animateSkeleton";
+
+  @media (max-width: 580px) {
+    min-width: 150px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 60%;
+    height: 42%;
+    background-color: rgba(204, 204, 204, 0.4);
+    border-radius: 20px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    height: 68%;
+    background-color: rgba(204, 204, 204, 0.12);
+    border-radius: 30px;
+  }
+
+  @keyframes animateSkeleton {
+    0% {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+
+    50% {
+      opacity: 0.3;
+      transform: scale(0.9, 0.9);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+  }
+`;
+
+const ItemSkeletonPart = styled.div`
+  position: absolute;
+  bottom: 22%;
+  width: 73%;
+  height: 29%;
+  left: 50%;
+  border-radius: 15px;
+  transform: translate(-50%);
+  background-color: rgba(204, 204, 204, 0.8);
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -62%;
+    left: -3%;
+    width: 40px;
+    height: 30px;
+    background-color: rgba(204, 204, 204, 0.8);
+    border-radius: 5px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -62%;
+    right: -12%;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(204, 204, 204, 0.8);
+    border-radius: 50%;
+  }
+`;
+
+const ItemContainer = styled.div`
   padding-top: ${({ activeCard }) => (activeCard ? "85px" : "90px")};
-  max-width: 206px;
   position: relative;
   margin-bottom: 15px;
   -webkit-tap-highlight-color: transparent;
@@ -450,7 +554,6 @@ const ItemWrapper = styled.div`
   }
 
   @media (max-width: 580px) {
-    max-width: 190px;
     padding-top: ${({ activeCard }) => (activeCard ? "65px" : "70px")};
   }
 `;

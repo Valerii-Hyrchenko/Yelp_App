@@ -5,7 +5,7 @@ const initialState = [];
 export const imgLoadingReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHECK_IMG_LOADING:
-      return [...state, { isImgLoaded: true }];
+      return [...state, action.payload];
     default:
       return state;
   }
