@@ -1,6 +1,6 @@
 import { useNav } from "../../hooks/useNav";
 import app from "../../base";
-import { signOutUser } from "../../redux/actions";
+import { signOutUser, clearProfileInfo } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { memo } from "react";
 import styled from "styled-components";
@@ -12,6 +12,7 @@ const SignOutFromApp = () => {
   const handleSignOut = async (event) => {
     event.preventDefault();
     dispatch(signOutUser());
+    dispatch(clearProfileInfo());
     goTo("/");
   };
   return (

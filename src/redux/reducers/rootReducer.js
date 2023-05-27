@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import { activeGroupReducer } from "./activeGroupReducer";
 import { configsReducer } from "./configsReducer";
 import { authReducer } from "./authReducer";
+import { userProfileInfoReducer } from "./userProfileInfoReducer";
 import { loaderReducer } from "./loaderReducer";
 import { showOrHideBasketReducer } from "./showOrHideBasketReducer";
 import { firstTimeBasketShowReducer } from "./firstTimeBasketShowReducer";
@@ -16,6 +17,7 @@ export const rootReducer = combineReducers({
   isImgLoaded: imgLoadingReducer,
   configItems: configsReducer,
   currentAuthUser: authReducer,
+  userProfileInfo: userProfileInfoReducer,
   loader: loaderReducer,
   isBasketShow: showOrHideBasketReducer,
   basketProcessing: basketProcessingReducer,

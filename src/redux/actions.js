@@ -12,19 +12,20 @@ import { FIRST_TIME_BASKET_SHOW } from "./types";
 import { FIRST_TIME_BASKET_HIDE } from "./types";
 import { HIDE_BASKET } from "./types";
 import { CLEAR_BASKET } from "./types";
+import { CLEAR_PROFILE_INFO } from "./types";
 import { SELECTED_DISHES_IN_BASKET } from "./types";
 import { CHANGE_QUANTITY_DISHES } from "./types";
 import { SEARCH_RESULT } from "./types";
 import { CLEAR_SEARCH } from "./types";
+import { GET_PROFILE_INFO } from "./types";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { child, get } from "firebase/database";
-import { dbRef } from "../base";
-import { app } from "../base";
+import { child, get, ref, onValue } from "firebase/database";
+import { dbRef, app, database } from "../base";
 
 const auth = getAuth();
 
@@ -84,10 +85,16 @@ export const clearBasket = () => {
   };
 };
 
-export const selectGroup = (groupName) => {
+export const clearProfileInfo = () => {
+  return {
+    type: CLEAR_PROFILE_INFO,
+  };
+};
+
+export const selectGroup = (group) => {
   return {
     type: SELECT_GROUP,
-    payload: groupName,
+    payload: group,
   };
 };
 
@@ -122,6 +129,23 @@ export const getDishesItemsConfig = () => {
       .catch((error) => {
         console.error(error);
       });
+  };
+};
+
+export const getUserProfileData = (userId) => {
+  return (dispatch) => {
+    const starCountRef = ref(database, `/usersProfileInfo/${userId}`);
+    onValue(starCountRef, (snapshot) => {
+      let profileObj = snapshot.val();
+      let profileArr = [];
+      for (let key in profileObj) {
+        profileArr.push(profileObj[key]);
+      }
+      dispatch({
+        type: GET_PROFILE_INFO,
+        payload: profileArr,
+      });
+    });
   };
 };
 

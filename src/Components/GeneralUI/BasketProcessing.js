@@ -1,12 +1,17 @@
+import { useNav } from "../../hooks/useNav";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { updateBasket } from "../../redux/actions";
-import { hideBasket } from "../../redux/actions";
-import { changeQuantityDishes } from "../../redux/actions";
-import { clearBasket } from "../../redux/actions";
+import {
+  updateBasket,
+  selectActiveMenuPosition,
+  hideBasket,
+  changeQuantityDishes,
+  clearBasket,
+  firstTimeShowBasket,
+  firstTimeHideBasket,
+} from "../../redux/actions";
 import { useState } from "react";
-import { firstTimeHideBasket } from "../../redux/actions";
-import { firstTimeShowBasket } from "../../redux/actions";
+import { menuConfig } from "../allConfigsConst";
 
 import arrow from "../../assets/img/delivery/arrow.svg";
 import trash from "../../assets/icons/basket/trash.svg";
@@ -14,10 +19,12 @@ import inProgressImg from "../../assets/img/in_progress_cooking/in_progress_cook
 
 export const BasketProcessing = () => {
   const [isOrderComplete, setIsOrderComplete] = useState(false);
+  const { goTo } = useNav();
 
-  const selectedDishes = useSelector(
-    (state) => state.basketProcessing.selectedDishes
-  );
+  const {
+    basketProcessing: { selectedDishes },
+    userProfileInfo: { userProfileInfo },
+  } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -51,11 +58,39 @@ export const BasketProcessing = () => {
   return (
     <BasketProcessingContainer>
       {isOrderComplete ? (
-        <InProgressCookingWrap>
-          <InProgressCookingImg src={inProgressImg} alt="in-progress-img" />
-          <InProgressTitle>in the process of cooking...</InProgressTitle>
-          <OrderButton onClick={handleCloseOrder}>Order more</OrderButton>
-        </InProgressCookingWrap>
+        userProfileInfo ? (
+          userProfileInfo.length > 0 ? (
+            <InProgressCookingWrap>
+              <InProgressCookingImg src={inProgressImg} alt="in-progress-img" />
+              <InProgressTitle>in the process of cooking...</InProgressTitle>
+              <OrderButton onClick={handleCloseOrder}>Order more</OrderButton>
+            </InProgressCookingWrap>
+          ) : (
+            <>
+              <InProgressTitle>
+                Please fill out your profile so that we can accurately deliver
+                your order!
+              </InProgressTitle>
+              <OrderButton
+                onClick={() =>
+                  dispatch(selectActiveMenuPosition(menuConfig[2]))
+                }
+              >
+                Go to settings
+              </OrderButton>
+            </>
+          )
+        ) : (
+          <>
+            <InProgressTitle>
+              Sorry, but in order for us to accept your order, you need to
+              create an account, log in and fill out the settings section.
+            </InProgressTitle>
+            <OrderButton onClick={() => goTo("/login")}>
+              Go to login page
+            </OrderButton>
+          </>
+        )
       ) : (
         <ProcessingWrapper>
           <BasketTitleFlexWrap>

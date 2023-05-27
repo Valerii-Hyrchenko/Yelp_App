@@ -6,13 +6,15 @@ import { LeftBarMenu } from "../Components/GeneralUI/GeneralPageParts/LeftBarMen
 import styled from "styled-components";
 import { menuConfig } from "../Components/allConfigsConst";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfileData } from "../redux/actions";
 
 export const GeneralPage = () => {
   const {
     currentAuthUser: { currentAuthUser },
     activeLeftBarPosition: { activeLeftBarPosition },
   } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const renderCurrentPart = () => {
     switch (activeLeftBarPosition.id) {
@@ -34,6 +36,7 @@ export const GeneralPage = () => {
       localStorage.setItem("authUser", JSON.stringify(null));
     } else {
       localStorage.setItem("authUser", JSON.stringify(currentAuthUser));
+      dispatch(getUserProfileData(currentAuthUser.uid));
     }
   }, [currentAuthUser]);
 

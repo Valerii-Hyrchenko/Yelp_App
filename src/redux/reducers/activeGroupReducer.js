@@ -1,7 +1,7 @@
 import { SELECT_GROUP } from "../types";
 import { menuDishesConfig } from "../../Components/allConfigsConst";
 
-const initialState = { activeDishGroup: menuDishesConfig[0] };
+const initialState = { activeDishGroup: menuDishesConfig[1] };
 
 export const activeGroupReducer = (state = initialState, action) => {
   switch (action.type) {

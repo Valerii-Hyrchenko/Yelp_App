@@ -25,7 +25,7 @@ const DishesItems = () => {
 
   const dispatch = useDispatch();
   const {
-    isImgLoaded,
+    isImgLoaded: { loadedImg },
     activeDishGroup: { activeDishGroup },
     isFirsTimeBasketShow: { isFirstShow },
     basketProcessing: { selectedDishes },
@@ -173,7 +173,7 @@ const DishesItems = () => {
         }, delay);
       });
     };
-    if (isImgLoaded.length >= dishesArrToRender.length)
+    if (loadedImg.length >= dishesArrToRender.length)
       showItems(refDishes.current);
   };
 
@@ -205,7 +205,7 @@ const DishesItems = () => {
 
   useEffect(() => {
     showDishItems();
-  }, [isImgLoaded, dishesArrToRender]);
+  }, [loadedImg, dishesArrToRender]);
 
   return (
     <>

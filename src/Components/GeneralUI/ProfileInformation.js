@@ -1,42 +1,23 @@
-import { memo, useState, useEffect } from "react";
+import { memo } from "react";
 import { ButtonWrapper } from "./UserProfileForm";
 import { Button } from "./UserProfileForm";
 import styled from "styled-components";
 import { profileInputsConfig } from "../allConfigsConst";
-import { ref, onValue } from "firebase/database";
-import { database } from "../../base";
 import { useSelector } from "react-redux";
 
 const ProfileInformation = ({ handleFormRender }) => {
-  const [currentUserProfile, setCurrentUserProfile] = useState(null);
-  const { currentAuthUser } = useSelector((state) => state.currentAuthUser);
-
-  const getUserProfileData = () => {
-    const starCountRef = ref(
-      database,
-      `/usersProfileInfo/${currentAuthUser ? currentAuthUser.uid : null}`
-    );
-    onValue(starCountRef, (snapshot) => {
-      let profileObj = snapshot.val();
-      let profileArr = [];
-      for (let key in profileObj) {
-        profileArr.push(profileObj[key]);
-      }
-      setCurrentUserProfile(profileArr);
-    });
-  };
-
-  useEffect(() => {
-    getUserProfileData();
-  }, []);
+  const {
+    currentAuthUser: { currentAuthUser },
+    userProfileInfo: { userProfileInfo },
+  } = useSelector((state) => state);
 
   return (
     <>
       <UserProfileInfoTitle>User profile information</UserProfileInfoTitle>
       <UserCurrentProfileWrap>
-        {currentUserProfile ? (
+        {userProfileInfo ? (
           <>
-            {currentUserProfile.length === 0
+            {userProfileInfo.length === 0
               ? profileInputsConfig.map((item) => (
                   <UserProfileTextWrap key={item.id}>
                     <UserProfileText>
@@ -49,7 +30,7 @@ const ProfileInformation = ({ handleFormRender }) => {
                     </UserProfileText>
                   </UserProfileTextWrap>
                 ))
-              : currentUserProfile.map(({ id, value, fieldTitle }) => (
+              : userProfileInfo.map(({ id, value, fieldTitle }) => (
                   <UserProfileTextWrap key={id}>
                     <UserProfileText>
                       <span>{fieldTitle}</span>
