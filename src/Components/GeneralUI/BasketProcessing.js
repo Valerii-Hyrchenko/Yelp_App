@@ -57,6 +57,12 @@ export const BasketProcessing = () => {
 
   return (
     <BasketProcessingContainer>
+      <BasketTitleFlexWrap>
+        <BasketTitle>Basket</BasketTitle>
+        <ArrowWrapper onClick={handleGoBackArrow}>
+          <ArrowImg src={arrow} alt="basket-img" />
+        </ArrowWrapper>
+      </BasketTitleFlexWrap>
       {isOrderComplete ? (
         userProfileInfo ? (
           userProfileInfo.length > 0 ? (
@@ -83,8 +89,8 @@ export const BasketProcessing = () => {
         ) : (
           <>
             <InProgressTitle>
-              Sorry, but in order for us to accept your order, you need to
-              create an account, log in and fill out the settings section.
+              Sorry, but for accept your order, you need to create an account,
+              log in and fill out the settings section.
             </InProgressTitle>
             <OrderButton onClick={() => goTo("/login")}>
               Go to login page
@@ -92,13 +98,7 @@ export const BasketProcessing = () => {
           </>
         )
       ) : (
-        <ProcessingWrapper>
-          <BasketTitleFlexWrap>
-            <BasketTitle>Basket</BasketTitle>
-            <ArrowWrapper onClick={handleGoBackArrow}>
-              <ArrowImg src={arrow} alt="basket-img" />
-            </ArrowWrapper>
-          </BasketTitleFlexWrap>
+        <>
           {selectedDishes.length === 0 ? (
             <WhenDontChosen>You haven't selected any dishes yet</WhenDontChosen>
           ) : (
@@ -145,7 +145,7 @@ export const BasketProcessing = () => {
               )}
             </OrderButton>
           </OrderButtonWrap>
-        </ProcessingWrapper>
+        </>
       )}
     </BasketProcessingContainer>
   );
@@ -180,8 +180,6 @@ const BasketProcessingContainer = styled.div`
     margin-left: 15px;
   }
 `;
-
-const ProcessingWrapper = styled.div``;
 
 const BasketTitleFlexWrap = styled.div`
   display: flex;
